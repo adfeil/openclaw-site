@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Scout Viewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <h1>📊 Daily Scout Viewer</h1>
+      <div class="badge" id="badge">Files: 0</div>
+    </header>
+
+    <div class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-title">Scout Files</div>
+        <ul class="file-list" id="fileList">
+          <li class="loading">Loading files...</li>
+        </ul>
+      </aside>
+
+      <!-- Main Panel -->
+      <main class="main-panel">
+        <div class="content-area" id="contentArea">
+          <p class="placeholder">Select a file from the sidebar to view its content.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
