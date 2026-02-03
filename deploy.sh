@@ -60,4 +60,7 @@ git add .
 git commit -m "bot: auto deploy $(date -u)" || echo "nothing to commit"
 git push
 
+rm -f "$APPROVAL_FILE"
+echo "🧹 Approval removed (one-time deploy)"
+
 echo "🚀 Deploy finished"
