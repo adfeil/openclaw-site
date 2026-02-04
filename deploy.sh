@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APPROVAL_FILE="$HOME/governance/approvals/APR-DEPLOY-001.yml"
+APPROVAL_FILE="$HOME/.openclaw/workspace/approvals/APR-DEPLOY-001.yml"
 WORKSPACE="$HOME/.openclaw/workspace"
 REPO_DIR="$HOME/openclaw-site"
 
