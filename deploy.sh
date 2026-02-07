@@ -6,6 +6,14 @@ WORKSPACE="$HOME/.openclaw/workspace"
 REPO_DIR="$HOME/openclaw-site"
 REPO_APPROVAL_SOURCE="$REPO_DIR/governance/approvals/APR-DEPLOY-001.yml"
 
+TRIGGER_FILE="$WORKSPACE/triggers/deploy.request"
+
+# optionaler Telegram-Trigger (Approval + Trigger löschen)
+if [ -f "$TRIGGER_FILE" ]; then
+  echo "⚡ Deploy triggered via Telegram request file"
+  rm -f "$TRIGGER_FILE"
+fi
+
 if [ ! -f "$APPROVAL_FILE" ]; then
   # idiotensicher: approval aus repo nach workspace kopieren
   if [ -f "$REPO_APPROVAL_SOURCE" ]; then
