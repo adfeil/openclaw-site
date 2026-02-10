@@ -152,3 +152,32 @@ window.addEventListener('load', logPerformance);
 // ============================================
 
 console.log('🚀 KI-Tools Vergleich v2 loaded');
+
+/* ===== Mobile Menu Toggle (Master Template) ===== */
+(function () {
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.contains('is-open');
+    setOpen(!isOpen);
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (e.target === btn || btn.contains(e.target)) return;
+    if (e.target === nav || nav.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();

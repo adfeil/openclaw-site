@@ -1,12 +1,11 @@
 // ============================================
-// Website Builder Comparison - Full Version
+// Modern KI-Tools Comparison - v2
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
   initializeNavigation();
   initializeAffiliateTracking();
   initializeScrollEffects();
-  initializeStickyButton();
 });
 
 // ============================================
@@ -21,9 +20,11 @@ function initializeNavigation() {
       const href = this.getAttribute('href');
       const target = document.querySelector(href);
       
-      if (target && href !== '#') {
+      if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Track navigation
         trackEvent('navigation', href);
       }
     });
@@ -36,11 +37,11 @@ function initializeNavigation() {
 
 function initializeAffiliateTracking() {
   const affiliateLinks = document.querySelectorAll(
-    'a[href*="wix.com"], ' +
-    'a[href*="squarespace.com"], ' +
-    'a[href*="webflow.com"], ' +
-    'a[href*="shopify.com"], ' +
-    'a[href*="hostinger.com"]'
+    'a[href*="openai.com"], ' +
+    'a[href*="claude.ai"], ' +
+    'a[href*="notion.so"], ' +
+    'a[href*="canva.com"], ' +
+    'a[href*="zapier.com"]'
   );
   
   affiliateLinks.forEach(link => {
@@ -48,10 +49,12 @@ function initializeAffiliateTracking() {
       const tool = extractToolName(this.textContent);
       const url = this.getAttribute('href');
       
+      // Track the click
       trackAffiliateClick(tool, url);
       
+      // Add UTM params if not present
       if (url && !url.includes('?')) {
-        this.href = url + '?utm_source=website-builder-vergleich&utm_medium=affiliate&utm_campaign=' + slugify(tool);
+        this.href = url + '?utm_source=ki-tools-v2&utm_medium=affiliate&utm_campaign=' + slugify(tool);
       }
     });
   });
@@ -59,11 +62,11 @@ function initializeAffiliateTracking() {
 
 function extractToolName(text) {
   const cleaned = text.toLowerCase().trim();
-  if (cleaned.includes('wix')) return 'Wix';
-  if (cleaned.includes('squarespace')) return 'Squarespace';
-  if (cleaned.includes('webflow')) return 'Webflow';
-  if (cleaned.includes('shopify')) return 'Shopify';
-  if (cleaned.includes('hostinger')) return 'Hostinger';
+  if (cleaned.includes('chatgpt')) return 'ChatGPT';
+  if (cleaned.includes('claude')) return 'Claude';
+  if (cleaned.includes('notion')) return 'Notion';
+  if (cleaned.includes('canva')) return 'Canva';
+  if (cleaned.includes('zapier')) return 'Zapier';
   return 'Unknown';
 }
 
@@ -77,12 +80,20 @@ function slugify(text) {
 }
 
 function trackAffiliateClick(tool, url) {
-  console.log('🎯 Website Builder Affiliate Click:', {
+  console.log('🎯 Affiliate Click:', {
     tool: tool,
     url: url,
     timestamp: new Date().toISOString(),
-    page: window.location.href
+    page: window.location.href,
+    userAgent: navigator.userAgent
   });
+  
+  // You can send this to your own backend:
+  // fetch('/api/track-affiliate', { 
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ tool, url, timestamp: new Date() })
+  // });
 }
 
 function trackEvent(category, action, label = '') {
@@ -95,17 +106,11 @@ function trackEvent(category, action, label = '') {
 }
 
 // ============================================
-// Scroll Effects (Animations)
+// Scroll Effects (Parallax, Animations)
 // ============================================
 
 function initializeScrollEffects() {
-  const cards = document.querySelectorAll(
-    '.problem-card, ' +
-    '.review-item, ' +
-    '.faq-card, ' +
-    '.trust-card, ' +
-    '.decision-case'
-  );
+  const cards = document.querySelectorAll('.tool-card, .review-item, .faq-card, .trust-card');
   
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -127,41 +132,6 @@ function initializeScrollEffects() {
 }
 
 // ============================================
-// Sticky CTA Button (Smooth Show/Hide)
-// ============================================
-
-function initializeStickyButton() {
-  const stickyBtn = document.querySelector('.sticky-cta');
-  const comparisonSection = document.getElementById('vergleich');
-  
-  if (!stickyBtn || !comparisonSection) return;
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Hide when comparison is visible
-        stickyBtn.style.opacity = '0';
-        stickyBtn.style.pointerEvents = 'none';
-      } else {
-        // Show when comparison is out of view
-        stickyBtn.style.opacity = '1';
-        stickyBtn.style.pointerEvents = 'auto';
-      }
-    });
-  });
-  
-  observer.observe(comparisonSection);
-  
-  // Always show when scrolling up (near top)
-  window.addEventListener('scroll', () => {
-    if (window.scrollY < 500) {
-      stickyBtn.style.opacity = '0';
-      stickyBtn.style.pointerEvents = 'none';
-    }
-  });
-}
-
-// ============================================
 // Performance Monitoring (Optional)
 // ============================================
 
@@ -169,14 +139,45 @@ function logPerformance() {
   if ('performance' in window) {
     const perfData = window.performance.timing;
     const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+    
     console.log('⚡ Page Load Time:', pageLoadTime + 'ms');
   }
 }
 
+// Log performance when page fully loads
 window.addEventListener('load', logPerformance);
 
 // ============================================
-// Initialize
+// Init
 // ============================================
 
-console.log('🌐 Website Builder Comparison loaded');
+console.log('🚀 KI-Tools Vergleich v2 loaded');
+
+/* ===== Mobile Menu Toggle (Master Template) ===== */
+(function () {
+  const btn = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('site-nav');
+  if (!btn || !nav) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.contains('is-open');
+    setOpen(!isOpen);
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (e.target === btn || btn.contains(e.target)) return;
+    if (e.target === nav || nav.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();
