@@ -718,3 +718,135 @@ a:hover{ opacity:.9; }
   text-decoration:none !important;
   color:inherit !important;
 }
+
+/* =========================================================
+   A: OPTION 2 — LIGHT SAAS FOUNDATION + BOXED LAYOUT (global)
+   ========================================================= */
+
+/* Core theme tokens (force light) */
+:root{
+  --bg: #ffffff;
+  --bg-soft: #f6f7fb;
+  --text: #0f172a;        /* slate-900 */
+  --muted: #475569;       /* slate-600 */
+  --border: #e5e7eb;      /* gray-200 */
+  --card: #ffffff;
+  --shadow: 0 10px 30px rgba(2,6,23,.08);
+  --radius: 16px;
+
+  /* brand accent (keeps your cyan vibe) */
+  --accent: #22d3ee;      /* cyan-400 */
+  --accent-2: #38bdf8;    /* sky-400 */
+}
+
+/* Page base */
+html,body{
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+body{
+  line-height: 1.55;
+}
+
+/* Universal container (boxed) */
+.container{
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* Make common sections breathe */
+section{
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+/* Headings + text defaults */
+h1,h2,h3{
+  color: var(--text) !important;
+}
+
+p{
+  color: var(--muted) !important;
+}
+
+/* Cards (global) */
+.card, .faq-card, .feature-card, .review-card, .box, .panel{
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+/* Tables: at least readable + boxed (we’ll redesign in Step C) */
+table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td{
+  padding: 14px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+th{
+  background: var(--bg-soft);
+  color: var(--text);
+  font-weight: 700;
+}
+
+tr:last-child td{
+  border-bottom: 0;
+}
+
+/* Buttons (global baseline) */
+.btn, button, .button, a.btn{
+  border-radius: 14px;
+}
+
+.btn-primary, .primary, a.primary{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #001018 !important;
+  border: 0 !important;
+}
+
+/* Keep HERO as gradient (Option 2), but ensure text looks right */
+.hero, .hero-section{
+  color: #ffffff !important;
+}
+
+.hero h1, .hero-section h1,
+.hero p,  .hero-section p{
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+
+th{
+  background:var(--bg-soft);
+  font-weight:700;
+}
+
+/* BUTTONS */
+button,.btn,a.btn{
+  border-radius:14px;
+  padding:10px 18px;
+}
+
+.btn-primary,.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#001018!important;
+  border:none!important;
+}
+
+/* =========================================================
