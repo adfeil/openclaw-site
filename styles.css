@@ -679,3 +679,42 @@ a:hover{ opacity:.9; }
 
 .footer{ background:var(--bg)!important; border-top:1px solid var(--border)!important; }
 .footer a{ color:var(--link)!important; }
+
+/* =========================================================
+   HEADER / NAV FIXES (global)
+   ========================================================= */
+
+.header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.nav a{
+  text-decoration:none;
+  color:var(--text, #111) !important;
+  font-weight:600;
+  padding:6px 8px;
+  border-radius:10px;
+}
+
+.nav a:visited{
+  color:var(--text, #111) !important;
+}
+
+.nav a:hover{
+  background:var(--bg-soft, #f6f7f9) !important;
+}
+
+.logo a{
+  text-decoration:none !important;
+  color:inherit !important;
+}
