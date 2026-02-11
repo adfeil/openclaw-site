@@ -903,3 +903,31 @@ section{
   font-weight:600;
   opacity:.9;
 }
+
+/* ============================= */
+/* FORCE LIGHT MODE (global)     */
+/* ============================= */
+
+html, body{
+  background:#f7f8fb;
+  color:#1f2937;
+}
+
+.header,
+.hero,
+.comparison,
+.reviews,
+.faq,
+.footer{
+  background:#ffffff;
+}
+
+.section-intro,
+.hero-subtitle{
+  color:#4b5563;
+}
+
+table{
+  background:#ffffff;
+}
+
