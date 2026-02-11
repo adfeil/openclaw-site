@@ -878,3 +878,28 @@ section > *:not(.container):not(script):not(style){
 section{
   width: 100%;
 }
+
+/* === NAV SPLIT (Problem 1 Fix) === */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.nav-main,
+.nav-pages{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.nav-sep{
+  width:1px;
+  height:22px;
+  background: rgba(255,255,255,.18);
+}
+
+.nav-pages a{
+  font-weight:600;
+  opacity:.9;
+}
