@@ -850,3 +850,31 @@ button,.btn,a.btn{
 }
 
 /* =========================================================
+/* =========================================================
+   B1 — FORCE BOXED LAYOUT (fallback, even if markup misses .container)
+   ========================================================= */
+
+/* If a section/main has direct children that are NOT .container,
+   we still box them to 1200px + padding. */
+main > *:not(.container):not(script):not(style),
+section > *:not(.container):not(script):not(style){
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Keep full-bleed hero backgrounds, but box hero content */
+.hero > *:not(.container){
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Prevent accidental “stretched” wrapper grids */
+section{
+  width: 100%;
+}
