@@ -1,3 +1,8 @@
 
 # local backups
 backups/
+
+# backups
+*.bak
+*.bak.*
+styles.css.bak.*
