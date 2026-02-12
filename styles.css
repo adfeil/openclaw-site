@@ -558,14 +558,11 @@ a:hover{ opacity:.9; }
   color:var(--muted)!important;
 }
 
-.tool-card,.review-item,.trust-card,.faq-card,.table-wrapper,.comparison-table{
+.tool-card,.review-item,.trust-card,.faq-card{
   background:var(--card)!important;
   border:1px solid var(--border)!important;
   box-shadow:var(--shadow)!important;
 }
-
-.comparison-table th{ background:var(--bg-soft)!important; color:var(--text)!important; }
-.comparison-table td{ color:var(--muted)!important; }
 
 .footer{ background:var(--bg)!important; border-top:1px solid var(--border)!important; }
 .footer a{ color:var(--link)!important; }
