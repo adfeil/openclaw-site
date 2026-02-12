@@ -903,3 +903,30 @@ table{
   top: 0;
   font-weight: 700;
 }
+
+/* ============================================
+   Homepage: Pros/Cons Layout wie Unterseiten
+   (Homepage nutzt .review-pros-cons statt .pros-cons)
+   ============================================ */
+.review-pros-cons{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:18px;
+  align-items:start;
+  margin-top:14px;
+}
+
+/* Mobile: untereinander */
+@media (max-width: 820px){
+  .review-pros-cons{ grid-template-columns: 1fr; }
+}
+
+/* Sicherheit: gleiche Card-Optik auch im Homepage-Wrapper erzwingen */
+.review-pros-cons .pros,
+.review-pros-cons .cons{
+  background:#ffffff;
+  color:#1f2937;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:18px;
+}
