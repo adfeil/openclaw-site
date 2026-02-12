@@ -10,7 +10,7 @@
   <meta property="og:description" content="Unabhängiger Vergleich der Top 5 KI-Tools mit Bewertungen, Features und Affiliate-Links.">
   <meta property="og:type" content="website">
   <title>Die besten Passwort-Manager 2026 | Vergleich & Empfehlung</title>
-  <link rel="stylesheet" href="/styles.css?v=20260212-4">
+  <link rel="stylesheet" href="/styles.css?v=20260212-1">
 </head>
 <body>
   <!-- Header -->
@@ -385,7 +385,19 @@
           <h3>🎯 Aktuell</h3>
           <p>KI-Tools ändern sich schnell. Wir aktualisieren regelmäßig. Keine veralteten Infos.</p>
         </div>
-      </div></div>
+      </div>
+
+      <div class="affiliate-section">
+        <h3>Über unsere Affiliate-Links</h3>
+        <p>Diese Seite enthält Affiliate-Links zu den genannten Tools. Das bedeutet:</p>
+        <ul class="affiliate-list">
+          <li>✓ Sie zahlen NICHT mehr, wenn Sie über unsere Links kaufen</li>
+          <li>✓ Sie unterstützen uns, diese Seite kostenlos zu halten</li>
+          <li>✓ Unsere Bewertungen sind unverändert — wir verdienen gleich viel pro Tool</li>
+          <li>✓ Wir würden eine Eins-Stern-Bewertung geben, wenn nötig</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- FAQ -->
@@ -445,6 +457,6 @@
     </div>
   </footer>
 
-  <script src="/script.js?v=20260212-4"></script>
+  <script src="/script.js?v=20260212-1"></script>
 </body>
 </html>
