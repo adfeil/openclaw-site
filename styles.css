@@ -931,3 +931,52 @@ table{
   background:#ffffff;
 }
 
+
+/* ============================= */
+/* PROS / CONS CARDS FIX        */
+/* ============================= */
+
+.pros-cons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:18px;
+}
+
+.pros,
+.cons{
+  background:#ffffff;
+  color:#1f2937;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:18px;
+}
+
+.pros h4,
+.cons h4{
+  color:#111827;
+  margin-bottom:10px;
+}
+
+.pros ul,
+.cons ul{
+  margin:0;
+  padding-left:18px;
+  line-height:1.6;
+}
+
+.cons h4{
+  color:#111827;
+  margin-bottom:10px;
+}
+
+.pros li,
+.cons li{
+  color:#374151;
+}
+
+/* Mobile: untereinander */
+@media (max-width: 820px){
+  .pros-cons{ grid-template-columns: 1fr; }
+}
+
