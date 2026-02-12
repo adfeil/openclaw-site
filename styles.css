@@ -285,67 +285,6 @@ body {
   margin-bottom: 20px;
 }
 
-.pros-cons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin: 30px 0;
-  padding: 25px;
-  background: rgba(77, 208, 255, 0.05);
-  border-radius: 8px;
-  border-left: 3px solid #4dd0ff;
-}
-
-.pros, .cons {
-  margin: 0;
-}
-
-.pros h4, .cons h4 {
-  margin-bottom: 15px;
-}
-
-.pros-cons ul {
-  list-style: none;
-}
-
-.pros-cons li {
-  padding: 8px 0 8px 25px;
-  position: relative;
-  color: #c0c0c0;
-  margin-bottom: 5px;
-}
-
-.pros li:before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #7fff9f;
-  font-weight: bold;
-}
-
-.cons li:before {
-  content: "✗";
-  position: absolute;
-  left: 0;
-  color: #ff6b6b;
-  font-weight: bold;
-}
-
-.recommendation {
-  background: rgba(255, 107, 107, 0.05);
-  border-left: 3px solid #ff6b6b;
-  padding: 15px;
-  border-radius: 6px;
-  margin: 20px 0 !important;
-  color: #e0e0e0;
-}
-
-@media (max-width: 768px) {
-  .pros-cons {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ============================================
    Trust Section
    ============================================ */
