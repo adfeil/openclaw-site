@@ -870,3 +870,36 @@ table{
   .pros-cons{ grid-template-columns: 1fr; }
 }
 
+
+/* ============================================
+   Pros/Cons: ✓ und ✗ statt Bulletpoints
+   ============================================ */
+.pros ul,
+.cons ul{
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.pros li,
+.cons li{
+  position: relative;
+  padding-left: 26px;
+  margin: 8px 0;
+}
+
+.pros li::before{
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+}
+
+.cons li::before{
+  content: "✗";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+}
