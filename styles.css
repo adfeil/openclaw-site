@@ -1,6 +1,4 @@
-/* ============================================
-   DARK MODE MODERN DESIGN
-   ============================================ */
+/* ========================================================= */   DARK MODE MODERN DESIGN
 
 * {
   margin: 0;
@@ -19,7 +17,6 @@ body {
   background: #0f0f0f;
 }/* ============================================
    Hero Section
-   ============================================ */
 
 .hero {
   background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
@@ -46,9 +43,7 @@ body {
   font-weight: 500;
 }
 
-/* ============================================
-   SEO Intro Section
-   ============================================ */
+/* ========================================================= */   SEO Intro Section
 
 .seo-intro {
   background: #141414;
@@ -76,9 +71,7 @@ body {
   font-weight: 700;
 }
 
-/* ============================================
-   Comparison Section
-   ============================================ */
+/* ========================================================= */   Comparison Section
 
 .comparison {
   background: #0f0f0f;
@@ -180,9 +173,7 @@ body {
   font-weight: 600;
 }
 
-/* ============================================
-   CTA Buttons (LARGE & CLEAR)
-   ============================================ */
+/* ========================================================= */   CTA Buttons (LARGE & CLEAR)
 
 .cta-btn {
   display: inline-block;
@@ -227,9 +218,7 @@ body {
   font-size: 18px;
 }
 
-/* ============================================
-   Reviews Section
-   ============================================ */
+/* ========================================================= */   Reviews Section
 
 .reviews {
   background: #141414;
@@ -312,9 +301,7 @@ body {
   font-weight: bold;
 }
 
-/* ============================================
-   FAQ Section
-   ============================================ */
+/* ========================================================= */   FAQ Section
 
 .faq {
   background: #141414;
@@ -351,9 +338,7 @@ body {
   font-size: 15px;
 }
 
-/* ============================================
-   Final CTA Section (LARGE)
-   ============================================ */
+/* ========================================================= */   Final CTA Section (LARGE)
 
 .final-cta {
   background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
@@ -391,9 +376,7 @@ body {
   }
 }
 
-/* ============================================
-   Footer
-   ============================================ */
+/* ========================================================= */   Footer
 
 .footer {
   background: #0a0a0a;
@@ -425,9 +408,7 @@ body {
   color: #00ffff;
 }
 
-/* ============================================
-   Responsive
-   ============================================ */
+/* ========================================================= */   Responsive
 
 @media (max-width: 768px) {
   h1 {
@@ -478,9 +459,7 @@ body {
   }
 }
 
-/* ============================================
-   Utility
-   ============================================ */
+/* ========================================================= */   Utility
 
 .section-intro {
   text-align: center !important;
@@ -528,11 +507,8 @@ body {
   }
 }
 
-/* =========================================================
-
-/* =========================================================
-   LIGHT MODE OVERRIDES (global)
-   ========================================================= */
+/* ========================================================= */
+/* ========================================================= */   LIGHT MODE OVERRIDES (global)
 :root{
   --bg:#fff;
   --bg-soft:#f6f7f9;
@@ -567,9 +543,7 @@ a:hover{ opacity:.9; }
 .footer{ background:var(--bg)!important; border-top:1px solid var(--border)!important; }
 .footer a{ color:var(--link)!important; }
 
-/* =========================================================
-   HEADER / NAV FIXES (global)
-   ========================================================= */
+/* ========================================================= */   HEADER / NAV FIXES (global)
 
 .header .container{
   display:flex;
@@ -606,9 +580,7 @@ a:hover{ opacity:.9; }
   color:inherit !important;
 }
 
-/* =========================================================
-   A: OPTION 2 — LIGHT SAAS FOUNDATION + BOXED LAYOUT (global)
-   ========================================================= */
+/* ========================================================= */   A: OPTION 2 — LIGHT SAAS FOUNDATION + BOXED LAYOUT (global)
 
 /* Core theme tokens (force light) */
 :root{
@@ -668,8 +640,9 @@ p{
   box-shadow: var(--shadow) !important;
 }
 
+
 /* Tables: at least readable + boxed (we’ll redesign in Step C) */
-table{
+table:not(.comparison-table){
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -678,20 +651,18 @@ table{
   border-radius: var(--radius);
   overflow: hidden;
 }
-
-th, td{
+table:not(.comparison-table) th,
+table:not(.comparison-table) td{
   padding: 14px 14px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
 }
-
-th{
+table:not(.comparison-table) th{
   background: var(--bg-soft);
   color: var(--text);
   font-weight: 700;
 }
-
-tr:last-child td{
+table:not(.comparison-table) tr:last-child td{
   border-bottom: 0;
 }
 
@@ -717,9 +688,8 @@ tr:last-child td{
 }
 
 
-/* =========================================================
-
-th{
+/* ========================================================= */
+table:not(.comparison-table) th{
   background:var(--bg-soft);
   font-weight:700;
 }
@@ -736,10 +706,10 @@ button,.btn,a.btn{
   border:none!important;
 }
 
-/* =========================================================
+
 /* =========================================================
    B1 — FORCE BOXED LAYOUT (fallback, even if markup misses .container)
-   ========================================================= */
+
 
 /* If a section/main has direct children that are NOT .container,
    we still box them to 1200px + padding. */
@@ -814,7 +784,7 @@ html, body{
   color:#4b5563;
 }
 
-table{
+table:not(.comparison-table){
   background:#ffffff;
 }
 
@@ -868,9 +838,7 @@ table{
 }
 
 
-/* ============================================
-   Pros/Cons: ✓ und ✗ statt Bulletpoints
-   ============================================ */
+/* ========================================================= */   Pros/Cons: ✓ und ✗ statt Bulletpoints
 .pros ul,
 .cons ul{
   list-style: none;
@@ -901,10 +869,8 @@ table{
   font-weight: 700;
 }
 
-/* ============================================
-   Homepage: Pros/Cons Layout wie Unterseiten
+/* ========================================================= */   Homepage: Pros/Cons Layout wie Unterseiten
    (Homepage nutzt .review-pros-cons statt .pros-cons)
-   ============================================ */
 .review-pros-cons{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -930,9 +896,7 @@ table{
 }
 
 
-/* ============================================
-   B2.2 Tables: clean, light, responsive
-   ============================================ */
+/* ========================================================= */   B2.2 Tables: clean, light, responsive
 .table-wrapper{
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
