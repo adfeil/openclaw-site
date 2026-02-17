@@ -1,5 +1,4 @@
-/* ========================================================= */   DARK MODE MODERN DESIGN
-
+/* ========================================================= DARK MODE MODERN DESIGN ========================================================= */
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +14,11 @@ body {
   line-height: 1.6;
   color: #e0e0e0;
   background: #0f0f0f;
-}/* ============================================
+}
+
+/* ============================================
    Hero Section
+   ============================================ */
 
 .hero {
   background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
@@ -43,8 +45,7 @@ body {
   font-weight: 500;
 }
 
-/* ========================================================= */   SEO Intro Section
-
+/* ========================================================= SEO Intro Section ========================================================= */
 .seo-intro {
   background: #141414;
   padding: 100px 0;
@@ -71,8 +72,7 @@ body {
   font-weight: 700;
 }
 
-/* ========================================================= */   Comparison Section
-
+/* ========================================================= Comparison Section ========================================================= */
 .comparison {
   background: #0f0f0f;
   padding: 100px 0;
@@ -173,8 +173,7 @@ body {
   font-weight: 600;
 }
 
-/* ========================================================= */   CTA Buttons (LARGE & CLEAR)
-
+/* ========================================================= CTA Buttons (LARGE & CLEAR) ========================================================= */
 .cta-btn {
   display: inline-block;
   padding: 14px 32px;
@@ -218,8 +217,7 @@ body {
   font-size: 18px;
 }
 
-/* ========================================================= */   Reviews Section
-
+/* ========================================================= Reviews Section ========================================================= */
 .reviews {
   background: #141414;
 }
@@ -301,8 +299,7 @@ body {
   font-weight: bold;
 }
 
-/* ========================================================= */   FAQ Section
-
+/* ========================================================= FAQ Section ========================================================= */
 .faq {
   background: #141414;
 }
@@ -338,8 +335,7 @@ body {
   font-size: 15px;
 }
 
-/* ========================================================= */   Final CTA Section (LARGE)
-
+/* ========================================================= Final CTA Section (LARGE) ========================================================= */
 .final-cta {
   background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
   padding: 120px 0;
@@ -376,8 +372,7 @@ body {
   }
 }
 
-/* ========================================================= */   Footer
-
+/* ========================================================= Footer ========================================================= */
 .footer {
   background: #0a0a0a;
   border-top: 1px solid #2a2a2a;
@@ -408,8 +403,7 @@ body {
   color: #00ffff;
 }
 
-/* ========================================================= */   Responsive
-
+/* ========================================================= Responsive ========================================================= */
 @media (max-width: 768px) {
   h1 {
     font-size: 44px;
@@ -459,8 +453,7 @@ body {
   }
 }
 
-/* ========================================================= */   Utility
-
+/* ========================================================= Utility ========================================================= */
 .section-intro {
   text-align: center !important;
 }
@@ -508,8 +501,7 @@ body {
 }
 
 /* ========================================================= */
-/* ========================================================= */   LIGHT MODE OVERRIDES (global)
-:root{
+/* ========================================================= LIGHT MODE OVERRIDES (global) ========================================================= */:root{
   --bg:#fff;
   --bg-soft:#f6f7f9;
   --card:#fff;
@@ -540,11 +532,8 @@ a:hover{ opacity:.9; }
   box-shadow:var(--shadow)!important;
 }
 
-.footer{ background:var(--bg)!important; border-top:1px solid var(--border)!important; }
-.footer a{ color:var(--link)!important; }
 
-/* ========================================================= */   HEADER / NAV FIXES (global)
-
+/* ========================================================= HEADER / NAV FIXES (global) ========================================================= */
 .header .container{
   display:flex;
   align-items:center;
@@ -580,8 +569,7 @@ a:hover{ opacity:.9; }
   color:inherit !important;
 }
 
-/* ========================================================= */   A: OPTION 2 — LIGHT SAAS FOUNDATION + BOXED LAYOUT (global)
-
+/* ========================================================= A: OPTION 2 — LIGHT SAAS FOUNDATION + BOXED LAYOUT (global) ========================================================= */
 /* Core theme tokens (force light) */
 :root{
   --bg: #ffffff;
@@ -707,9 +695,7 @@ button,.btn,a.btn{
 }
 
 
-/* =========================================================
-   B1 — FORCE BOXED LAYOUT (fallback, even if markup misses .container)
-
+/* ========================================================= B1 — FORCE BOXED LAYOUT (fallback, even if markup misses .container) ========================================================= */
 
 /* If a section/main has direct children that are NOT .container,
    we still box them to 1200px + padding. */
@@ -838,8 +824,7 @@ table:not(.comparison-table){
 }
 
 
-/* ========================================================= */   Pros/Cons: ✓ und ✗ statt Bulletpoints
-.pros ul,
+/* ========================================================= Pros/Cons: ✓ und ✗ statt Bulletpoints ========================================================= */.pros ul,
 .cons ul{
   list-style: none;
   padding-left: 0;
@@ -869,8 +854,7 @@ table:not(.comparison-table){
   font-weight: 700;
 }
 
-/* ========================================================= */   Homepage: Pros/Cons Layout wie Unterseiten
-   (Homepage nutzt .review-pros-cons statt .pros-cons)
+/* ========================================================= Homepage: Pros/Cons Layout wie Unterseiten ========================================================= */   (Homepage nutzt .review-pros-cons statt .pros-cons)
 .review-pros-cons{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -896,8 +880,7 @@ table:not(.comparison-table){
 }
 
 
-/* ========================================================= */   B2.2 Tables: clean, light, responsive
-.table-wrapper{
+/* ========================================================= B2.2 Tables: clean, light, responsive ========================================================= */.table-wrapper{
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid #e5e7eb;
@@ -938,3 +921,73 @@ table:not(.comparison-table){
 .comparison-table tbody tr:last-child td:first-child{ border-bottom-left-radius: 12px; }
 .comparison-table tbody tr:last-child td:last-child{ border-bottom-right-radius: 12px; }
 
+
+/* ============================================
+   Footer: layout fix (Homepage Markup)
+   ============================================ */
+.footer{
+  padding: 44px 0;
+  text-align: left; /* überschreibt altes center-footer */
+}
+
+.footer .footer-content{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.footer .footer-section h4{
+  margin: 0 0 10px 0;
+  color: #111827;
+  font-size: 16px;
+}
+
+.footer .footer-section p{
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.footer .footer-section ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer .footer-section li{
+  margin: 8px 0;
+}
+
+.footer .footer-section a{
+  color: #111827;
+  text-decoration: none;
+}
+
+.footer .footer-section a:hover{
+  text-decoration: underline;
+}
+
+.footer .footer-bottom{
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer .footer-bottom p{
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+@media (max-width: 860px){
+  .footer .footer-content{
+    grid-template-columns: 1fr;
+  }
+}
