@@ -1045,3 +1045,69 @@ table:not(.comparison-table){
   text-decoration: none;
   white-space: nowrap;
 }
+/* ===== Header Nav Polish (Dropdown + spacing) ===== */
+
+.nav-main a,
+.nav-dropdown summary{
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.nav-main a:hover{
+  background: rgba(0,0,0,0.04);
+}
+
+.nav-dropdown summary{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.nav-dropdown summary::after{
+  content: "▾";
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.nav-dropdown[open] summary{
+  background: rgba(0,0,0,0.05);
+}
+
+.nav-dropdown-menu{
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  z-index: 999;
+}
+
+.nav-dropdown-menu a{
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: inherit;
+}
+
+.nav-dropdown-menu a:hover{
+  background: rgba(0,0,0,0.04);
+}
+
+/* Mobile: Dropdown unter Anchors, sauber stapeln */
+@media (max-width: 820px){
+  .nav{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-pages{
+    margin-left: 0;
+  }
+
+  .nav-main{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
