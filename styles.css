@@ -1203,3 +1203,48 @@ a:hover{
   background: var(--card);
   border: 1px solid var(--border);
 }
+/* ===== Header: sticky + nav refinements (Phase 1) ===== */
+
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.92);
+}
+
+/* Smooth anchor scrolling (optional but nice for sticky headers) */
+html{
+  scroll-behavior: smooth;
+}
+
+/* Anchor links: subtle, brand-hover */
+.nav-main a{
+  color: var(--text) !important;
+}
+
+.nav-main a:hover{
+  color: var(--accent) !important;
+  background: rgba(34,211,238,0.10);
+}
+
+/* "Mehr" should NOT look like primary CTA */
+.nav-dropdown summary{
+  background: rgba(34,211,238,0.14);
+  color: var(--text);
+  border: 1px solid rgba(34,211,238,0.25);
+}
+
+.nav-dropdown summary::after{
+  color: var(--text);
+  opacity: 0.65;
+}
+
+.nav-dropdown summary:hover{
+  background: rgba(34,211,238,0.22);
+}
+
+/* Open state slightly stronger */
+.nav-dropdown[open] summary{
+  background: rgba(34,211,238,0.22);
+}
