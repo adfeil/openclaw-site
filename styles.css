@@ -1111,3 +1111,49 @@ table:not(.comparison-table){
     gap: 10px;
   }
 }
+/* ===== Header Hierarchy Upgrade ===== */
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-main a {
+  color: #374151;
+  font-weight: 500;
+}
+
+.nav-main a:hover {
+  color: #111827;
+}
+
+.nav-dropdown summary {
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+}
+
+.nav-dropdown summary::after {
+  color: #ffffff;
+}
+
+.nav-dropdown[open] summary {
+  background: #1f2937;
+}
+
+.nav-dropdown-menu {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.nav-dropdown-menu a {
+  font-weight: 500;
+  color: #111827;
+}
+
+.nav-dropdown-menu a:hover {
+  background: #f3f4f6;
+}
+
