@@ -1158,20 +1158,29 @@ table:not(.comparison-table){
 }
 /* ===== Phase-1 Global Tokens (single source of truth) ===== */
 :root{
+  /\* Core */
   --bg:#ffffff;
   --bg-soft:#f6f7fb;
   --card:#ffffff;
+
   --text:#0f172a;
   --muted:#475569;
+
   --border:#e5e7eb;
   --shadow:0 10px 30px rgba(2,6,23,.08);
+  --radius:16px;
 
-  /* Brand accent (use your cyan vibe) */
+  /\* Brand */
   --accent:#22d3ee;
   --accent-2:#38bdf8;
 
-  /* Links follow brand, not blue */
+  /\* Links + UI */
   --link: var(--accent);
+  --link-hover:#0ea5e9;
+
+  /\* Buttons */
+  --btn-text:#001018;
+  --btn-hover-opacity:0.92;
 }
 
 /* Global links (brand-consistent) */
