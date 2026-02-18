@@ -991,3 +991,57 @@ table:not(.comparison-table){
     grid-template-columns: 1fr;
   }
 }
+/* ===== Header Navigation Split (Anchors vs Pages) ===== */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-main {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-main a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-pages {
+  margin-left: auto; /* schiebt Dropdown nach rechts */
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+}
+
+.nav-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #eee;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 180px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.nav-dropdown-menu a {
+  text-decoration: none;
+  white-space: nowrap;
+}
