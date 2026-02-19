@@ -1,181 +1,108 @@
 // assets/js/main.js
-(function () {
-  function normPath(p) {
-    if (!p) return "/";
-    // remove query/hash
-    p = p.split("?")[0].split("#")[0];
-    // normalize trailing slash (except root)
-    if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-    return p || "/";
+(() => {
+  const HEADER_HTML = `
+<header class="site-header" data-ti-header>
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="ToolIndex Home">
+      <img src="/assets/img/logo.svg" alt="ToolIndex" class="brand-logo" />
+      <span class="brand-text">ToolIndex</span>
+    </a>
+
+    <!-- ZONE 1: Ankerlinks (Startseite) -->
+    <nav class="nav nav-anchors" aria-label="Seitenabschnitte">
+      <a href="/#top10" data-anchor="top10">Top 10</a>
+      <a href="/#faq" data-anchor="faq">FAQ</a>
+    </nav>
+
+    <!-- ZONE 2: Unterseiten (Dropdown) -->
+    <div class="nav-pages" aria-label="Unterseiten">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-pages-menu">
+        Seiten <span aria-hidden="true">▾</span>
+      </button>
+
+      <div class="nav-menu" id="nav-pages-menu" role="menu">
+        <a role="menuitem" href="/" data-page="home">Home</a>
+        <a role="menuitem" href="/vergleich/" data-page="vergleich">Vergleich</a>
+        <a role="menuitem" href="/reviews/" data-page="reviews">Reviews</a>
+        <a role="menuitem" href="/kategorien/" data-page="kategorien">Kategorien</a>
+        <div class="nav-sep" aria-hidden="true"></div>
+        <a role="menuitem" href="/affiliate-offenlegung/" data-page="affiliate">Affiliate</a>
+        <a role="menuitem" href="/impressum/" data-page="impressum">Impressum</a>
+        <a role="menuitem" href="/datenschutz/" data-page="datenschutz">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+</header>
+`;
+
+  function injectHeader() {
+    // Wenn schon vorhanden: nix tun
+    if (document.querySelector("[data-ti-header]")) return;
+
+    // Falls Seiten noch eigenen Header enthalten: entfernen
+    const existing = document.querySelector("header.site-header");
+    if (existing) existing.remove();
+
+    document.body.insertAdjacentHTML("afterbegin", HEADER_HTML);
   }
 
-  function getHeaderOffset() {
-    const header = document.querySelector(".site-header");
-    if (!header) return 0;
-    const h = header.getBoundingClientRect().height || 0;
-    return Math.round(h + 10); // 10px Luft
+  function setActiveLink() {
+    const path = location.pathname.replace(/\/+$/, "") || "/";
+    const menu = document.querySelector("#nav-pages-menu");
+    if (!menu) return;
+
+    // reset
+    menu.querySelectorAll("a[role='menuitem']").forEach(a => a.classList.remove("active"));
+
+    const map = [
+      { key: "home", match: /^\/$/ },
+      { key: "vergleich", match: /^\/vergleich$/ },
+      { key: "reviews", match: /^\/reviews$/ },
+      { key: "kategorien", match: /^\/kategorien$/ },
+      { key: "affiliate", match: /^\/affiliate-offenlegung$/ },
+      { key: "impressum", match: /^\/impressum$/ },
+      { key: "datenschutz", match: /^\/datenschutz$/ },
+    ];
+
+    const hit = map.find(m => m.match.test(path));
+    if (!hit) return;
+
+    const active = menu.querySelector(`a[data-page="${hit.key}"]`);
+    if (active) active.classList.add("active");
   }
 
-  function scrollToHash(hash, behavior) {
-    if (!hash) return false;
-    const id = hash.replace("#", "");
-    if (!id) return false;
+  function wireDropdown() {
+    const btn = document.querySelector(".nav-toggle");
+    const menu = document.querySelector(".nav-menu");
+    if (!btn || !menu) return;
 
-    const el = document.getElementById(id);
-    if (!el) return false;
+    const close = () => {
+      btn.setAttribute("aria-expanded", "false");
+      menu.classList.remove("open");
+    };
 
-    const offset = getHeaderOffset();
-    const y = window.scrollY + el.getBoundingClientRect().top - offset;
-
-    window.scrollTo({
-      top: Math.max(0, y),
-      behavior: behavior || "smooth",
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      menu.classList.toggle("open", !open);
     });
 
-    return true;
-  }
-
-  function setActiveNav() {
-    const links = Array.from(document.querySelectorAll(".nav a"));
-    if (!links.length) return;
-
-    const currentPath = normPath(window.location.pathname);
-    const currentHash = window.location.hash || "";
-
-    links.forEach((a) => a.classList.remove("active"));
-
-    // 1) Hash-Links auf Home priorisieren, wenn wir wirklich auf "/" sind
-    if (currentPath === "/" && currentHash) {
-      const hashLink = links.find((a) => {
-        const href = a.getAttribute("href") || "";
-        return href === currentHash || href === "/"+currentHash;
-      });
-      if (hashLink) {
-        hashLink.classList.add("active");
-        return;
-      }
-    }
-
-    // 2) Normale Seiten-Nav anhand Path matchen
-    const match = links.find((a) => {
-      const href = a.getAttribute("href") || "";
-      if (!href.startsWith("/")) return false;
-
-      const hrefPath = normPath(href);
-      // Home-Link
-      if (hrefPath === "/" && currentPath === "/") return true;
-
-      return hrefPath === currentPath;
-    });
-
-    if (match) match.classList.add("active");
-  }
-
-  function bindAnchorClicks() {
-    document.addEventListener("click", (e) => {
-      const a = e.target && e.target.closest ? e.target.closest("a") : null;
-      if (!a) return;
-
-      const href = a.getAttribute("href") || "";
-      if (!href.includes("#")) return;
-
-      // Nur interne Links behandeln
-      const isAbsolute = /^https?:\/\//i.test(href);
-      if (isAbsolute) return;
-
-      // Fälle:
-      //  - "#top10" (same page)
-      //  - "/#top10" (home section)
-      //  - "/vergleich/#..." (später)
-      const parts = href.split("#");
-      const pathPart = parts[0] || "";
-      const hashPart = "#" + (parts[1] || "");
-      const targetPath = normPath(pathPart || window.location.pathname);
-
-      const currentPath = normPath(window.location.pathname);
-
-      // Wenn Ziel-Seite == aktuelle Seite → smooth scroll
-      if (targetPath === currentPath) {
-        e.preventDefault();
-        if (scrollToHash(hashPart, "smooth")) {
-          history.pushState(null, "", hashPart);
-          setActiveNav();
-        }
-        return;
-      }
-
-      // Wenn Ziel = Home und wir sind NICHT auf Home → normal navigieren (Browser macht dann den Hash)
-      // (kein preventDefault)
+    document.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
     });
   }
 
-  function bindScrollSpyHome() {
-    const currentPath = normPath(window.location.pathname);
-    if (currentPath !== "/") return;
-
-    const top10 = document.getElementById("top10");
-    const faq = document.getElementById("faq");
-    if (!top10 && !faq) return;
-
-    let ticking = false;
-
-    function update() {
-      ticking = false;
-
-      const offset = getHeaderOffset();
-      const y = window.scrollY + offset + 1;
-
-      const sections = [
-        { id: "top10", el: top10 },
-        { id: "faq", el: faq },
-      ].filter((s) => s.el);
-
-      // finde "aktuelle" section = letzte, deren top <= y
-      let activeId = "";
-      for (const s of sections) {
-        const top = s.el.getBoundingClientRect().top + window.scrollY;
-        if (top <= y) activeId = s.id;
-      }
-
-      if (activeId) {
-        // aktive Nav setzen auf /#ID
-        const links = Array.from(document.querySelectorAll(".nav a"));
-        links.forEach((a) => a.classList.remove("active"));
-        const l = links.find((a) => (a.getAttribute("href") || "") === "/#" + activeId);
-        if (l) l.classList.add("active");
-      } else {
-        // sonst Home aktiv lassen
-        setActiveNav();
-      }
-    }
-
-    window.addEventListener("scroll", () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    });
-
-    // initial
-    update();
+  function normalizeAnchorScroll() {
+    // Wenn du auf /#faq klickst, landet man korrekt, selbst wenn man schon auf einer Unterseite war.
+    // Browser macht das sowieso, aber wir lassen es drin für spätere Smooth-Scroll Erweiterung.
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    bindAnchorClicks();
-
-    // Wenn direkt mit Hash geladen wurde → nach Layout kurz scrollen
-    if (window.location.hash) {
-      setTimeout(() => {
-        scrollToHash(window.location.hash, "auto");
-        setActiveNav();
-      }, 50);
-    } else {
-      setActiveNav();
-    }
-
-    bindScrollSpyHome();
-
-    // Aktiv-Nav auch bei Back/Forward korrekt halten
-    window.addEventListener("popstate", () => setActiveNav());
+    injectHeader();
+    setActiveLink();
+    wireDropdown();
+    normalizeAnchorScroll();
   });
 })();
