@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="ToolIndex">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f9d001"/>
+      <stop offset="1" stop-color="#c65890"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)"/>
+
+  <!-- Simple mark: dot + orbit -->
+  <circle cx="32" cy="32" r="7" fill="url(#g)"/>
+  <path d="M18 32c0-7.7 6.2-14 14-14s14 6.3 14 14-6.2 14-14 14-14-6.3-14-14Z"
+        fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2"/>
+
+  <!-- Small sparkle -->
+  <path d="M46 18l1.2 3.6L51 23l-3.8 1.4L46 28l-1.2-3.6L41 23l3.8-1.4L46 18Z"
+        fill="rgba(255,255,255,0.65)"/>
+</svg>

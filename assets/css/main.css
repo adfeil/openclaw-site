@@ -151,3 +151,38 @@ a:hover{ opacity:.9; }
 @media (max-width: 600px){
   .card{ grid-column: span 12; }
 }
+
+/* Brand (Logo + Text) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:inherit;
+  line-height:1;
+}
+
+.brand-logo{
+  width:22px;
+  height:22px;
+  display:block;
+  flex:0 0 auto;
+}
+
+.brand-text{
+  font-weight:700;
+  letter-spacing:0.2px;
+}
+
+/* Navigation: hover + keyboard focus */
+.nav a:hover{
+  color: var(--text);
+  border-color: rgba(255,255,255,.12);
+  background: rgba(255,255,255,.03);
+  opacity: 1;
+}
+
+.nav a:focus-visible{
+  outline: 2px solid rgba(249,208,1,.55);
+  outline-offset: 2px;
+}
