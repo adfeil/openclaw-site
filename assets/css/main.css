@@ -187,3 +187,6 @@ a:hover{ opacity:.9; }
   outline-offset: 2px;
 }
 #top10, #faq { scroll-margin-top: 90px; }
+/* Anchor-Scroll: damit Sticky-Header nichts überdeckt */
+html { scroll-behavior: smooth; }
+#top10, #faq { scroll-margin-top: 90px; }
