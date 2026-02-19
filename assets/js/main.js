@@ -25,10 +25,6 @@
         <a role="menuitem" href="/vergleich/" data-page="vergleich">Vergleich</a>
         <a role="menuitem" href="/reviews/" data-page="reviews">Reviews</a>
         <a role="menuitem" href="/kategorien/" data-page="kategorien">Kategorien</a>
-        <div class="nav-sep" aria-hidden="true"></div>
-        <a role="menuitem" href="/affiliate-offenlegung/" data-page="affiliate">Affiliate</a>
-        <a role="menuitem" href="/impressum/" data-page="impressum">Impressum</a>
-        <a role="menuitem" href="/datenschutz/" data-page="datenschutz">Datenschutz</a>
       </div>
     </div>
   </div>
@@ -59,9 +55,6 @@
       { key: "vergleich", match: /^\/vergleich$/ },
       { key: "reviews", match: /^\/reviews$/ },
       { key: "kategorien", match: /^\/kategorien$/ },
-      { key: "affiliate", match: /^\/affiliate-offenlegung$/ },
-      { key: "impressum", match: /^\/impressum$/ },
-      { key: "datenschutz", match: /^\/datenschutz$/ },
     ];
 
     const hit = map.find(m => m.match.test(path));
