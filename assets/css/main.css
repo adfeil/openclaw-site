@@ -186,3 +186,4 @@ a:hover{ opacity:.9; }
   outline: 2px solid rgba(249,208,1,.55);
   outline-offset: 2px;
 }
+#top10, #faq { scroll-margin-top: 90px; }
