@@ -62,7 +62,8 @@ manifest = {
     {"name": os.path.basename(f), "path": "data/" + os.path.basename(f)}
     for f in files
   ],
-  "generated": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+  "generated": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
+  "git_commit": os.popen("git rev-parse HEAD").read().strip()
 }
 
 with open(os.path.expanduser("~/openclaw-site/manifest.json"), "w") as f:
