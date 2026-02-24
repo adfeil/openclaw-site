@@ -6,6 +6,23 @@
   <title>ChatGPT Alternativen für Agenturen 2026 | ToolIndex</title>
   <meta name="description" content="Die besten ChatGPT Alternativen für Agenturen & professionelle Content-Teams. Vergleich von Claude, Jasper, Writesonic, Neuroflash, Copy.ai und Notion AI." />
   <link rel="stylesheet" href="/assets/css/main.css" />
+  <style>
+  /* FAQ soll NICHT wie Tool-Cards aussehen */
+  .faq-list { margin-top: 14px; }
+  .faq-item {
+    border-top: 1px solid rgba(255,255,255,0.10);
+    padding: 14px 0;
+  }
+  .faq-item:first-child { border-top: 0; padding-top: 0; }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+    outline: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item p { margin: 10px 0 0 0; }
+</style>
 </head>
 <body>
 
@@ -111,19 +128,26 @@
   </p>
 </section>
 
-<section class="container">
+<section class="container" id="faq">
   <h2>FAQ</h2>
 
-  <div class="card">
-    <h3>Was ist die beste ChatGPT Alternative für Agenturen?</h3>
-    <p>Das hängt von Teamgröße, Budget und Workflow ab. Claude überzeugt qualitativ, Jasper bietet starke Marketing-Features.</p>
-  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Was ist die beste ChatGPT Alternative für Agenturen?</summary>
+      <p class="muted">
+        Das hängt von Teamgröße, Budget und Workflow ab. Claude überzeugt oft bei Textqualität und Struktur,
+        Jasper ist stark bei Marketing-Workflows und Team-Features.
+      </p>
+    </details>
 
-  <div class="card">
-    <h3>Sind diese Tools DSGVO-konform?</h3>
-    <p>Einige Anbieter bieten EU-Server oder spezielle Datenschutzoptionen. Details sollten individuell geprüft werden.</p>
+    <details class="faq-item">
+      <summary>Sind diese Tools DSGVO-konform?</summary>
+      <p class="muted">
+        Manche Anbieter bieten EU-Optionen, DPA/AVV und weitere Datenschutz-Features. Für Agenturen gilt:
+        immer im Einzelfall prüfen (Kundendaten, Auftragsverarbeitung, Speicherort, Logging).
+      </p>
+    </details>
   </div>
-
 </section>
 
 </main>
