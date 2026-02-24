@@ -257,3 +257,23 @@ html { scroll-behavior: smooth; }
 @media (max-width: 720px){
   .nav-anchors{ display:none; } /* optional: später als mobile menu */
 }
+
+/* FAQ accordion: closed state must hide EVERYTHING */
+.faq-answer,
+.faq-content,
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+/* When open (adjust selector to what you use) */
+.faq-item.open .faq-answer,
+.faq-item.open .faq-content,
+.faq-item.open .faq-a {
+  max-height: 800px; /* genug groß, damit Inhalt reinpasst */
+  padding-top: 10px !important;
+  border-top: 0;
+}
