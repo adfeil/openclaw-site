@@ -336,15 +336,14 @@ th{
 /* ===== THEME TOGGLE BUTTON ===== */
 
 .theme-toggle{
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text);
-  border-radius: 12px;
+  margin-left: 8px;
   padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
   cursor: pointer;
-  font: inherit;
-  line-height: 1;
-  margin-left: 6px;
+  font-size: 16px;
 }
 
 .theme-toggle:hover{
