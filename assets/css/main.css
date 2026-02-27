@@ -101,6 +101,18 @@ a:hover{ opacity:.9; }
   gap:18px;
 }
 
+@media (max-width: 760px){
+  .site-header .container{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .nav{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
 .brand{
   display:flex;
   align-items:center;
