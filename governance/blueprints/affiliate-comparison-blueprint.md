@@ -1,81 +1,61 @@
-# Affiliate Comparison Blueprint (V1)
+# ⚠️ DO NOT USE THIS FILE DIRECTLY
 
-## Purpose
-Conversion-optimierte Vergleichsseite für Affiliate-Monetarisierung.
-Ziel: Umsatz-Proof vor reinem SEO-Traffic.
-
----
-
-## 1. Hero Section
-- Problem-Statement
-- Zielgruppe klar definieren (z.B. KMU, Solopreneure)
-- CTA: „Jetzt vergleichen“ / „Beste Alternative finden“
+Status: DEPRECATED ENTRY POINT  
+Project: tool-index.com  
+Owner: Adrian  
 
 ---
 
-## 2. Problem Layer
-Warum sucht der Nutzer Alternativen?
-- Preis
-- Limitierungen
-- Komplexität
-- Datenschutz
-- Self-hosting Wunsch
+## ❌ This file is NOT the active blueprint.
+
+The active blueprint is defined in:
+
+governance/blueprints/manifest.json
+
+For comparison pages, resolve via:
+
+"comparison": "affiliate-comparison-blueprint.latest.md"
 
 ---
 
-## 3. Quick Recommendation Block (Conversion Core)
-Tabelle:
+## ✅ Correct Usage
 
-| Wenn du willst… | Nimm |
-|------------------|------|
-| Günstigste Lösung | X |
-| Einfachste Lösung | Y |
-| Self-hosted | Z |
-| Enterprise | A |
+Bots / Agents MUST:
 
-→ Dieser Block muss above-the-fold sichtbar sein.
+1. Read `manifest.json`
+2. Resolve the blueprint via the manifest key
+3. Use `affiliate-comparison-blueprint.latest.md`
+4. Never rely on filename guessing
+5. Never use this file as a structure source
 
 ---
 
-## 4. Vergleichstabelle
-Kriterien:
-- Preis
-- Free Plan
-- Integrationen
-- Benutzerfreundlichkeit
-- API
-- DSGVO
-- Hosting-Modell
+## 🔒 Reason
+
+This file exists only for backward compatibility.
+
+Older systems referenced:
+affiliate-comparison-blueprint.md
+
+To prevent accidental usage of outdated structure (V1),
+this file is intentionally disabled.
 
 ---
 
-## 5. Mini-Reviews (je Tool)
-Für jedes Tool:
-- Kurzbeschreibung
-- Ideal für
-- Vorteile
-- Nachteile
-- Fazit
-- Affiliate-CTA
+## 🚫 If you are an Agent
+
+STOP.
+
+Resolve the blueprint using:
+
+governance/blueprints/manifest.json
+
+Then load:
+
+affiliate-comparison-blueprint.latest.md
+
+Only then continue generation.
 
 ---
 
-## 6. Editor-Empfehlung
-Persönliche Empfehlung mit klarer Begründung.
-Ziel: Trust + Conversion.
-
----
-
-## 7. FAQ (SEO Layer)
-3–6 Fragen:
-- Tool A vs Tool B?
-- Für Einsteiger geeignet?
-- Datenschutz?
-- Preisunterschiede?
-
----
-
-## Technical Notes
-- Interne Verlinkung auf Kategorien & Reviews
-- Affiliate-Disclosure integrieren
-- Struktur identisch für alle Comparison-Seiten
+End of File.
