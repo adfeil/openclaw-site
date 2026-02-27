@@ -4,33 +4,128 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tools A–Z | ToolIndex</title>
-  <meta name="description" content="Alle Tools auf ToolIndex (A–Z). Schnell suchen und zum passenden Use-Case springen." />
+  <meta name="description" content="Alle Tools auf ToolIndex (A–Z). Suche nach Tool oder Use-Case und spring direkt zu Kategorien, Vergleichen & Reviews." />
   <link rel="canonical" href="https://tool-index.com/tools/" />
   <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <!-- Mini-Styles nur für Tools-Index (damit wir main.css jetzt nicht anfassen) -->
+  <style>
+    .tool-search{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .tool-search input{
+      flex: 1 1 320px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      outline: none;
+    }
+    .tool-search input:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+    .tool-meta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .tool-chip{
+      display:inline-flex;
+      align-items:center;
+      padding:6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .az-grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .az-card{
+      grid-column: span 12;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 16px;
+    }
+    .az-letter{
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+    .az-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px 14px;
+    }
+    .az-item a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel-soft);
+    }
+    .az-item a:hover{ opacity: 1; background: var(--panel); }
+    .az-item small{ color: var(--muted); }
+    .no-results{
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--border);
+      color: var(--muted);
+      background: var(--panel);
+    }
+  </style>
 </head>
 <body>
 
 <div data-component="header"></div>
 
 <main class="container">
-  <section class="hero" style="padding: 40px 0 30px;">
+  <section class="hero" style="padding: 40px 0 20px;">
     <p class="muted" style="margin:0 0 8px;">Tools · A–Z</p>
     <h1>Tools A–Z</h1>
     <p class="lead">
-      Hier kommt ein alphabetischer Index + später eine Suche.
-      Bis dahin: starte über die <a href="/kategorien/"><strong>Kategorien</strong></a>.
+      Such nach einem Tool oder Use-Case – wir zeigen dir passende Treffer und verlinken auf Kategorien (und später: Vergleiche/Reviews).
     </p>
 
-    <div class="cta-row">
-      <a class="btn primary" href="/kategorien/">Zu den Kategorien</a>
+    <div class="tool-search" aria-label="Tool Suche">
+      <input id="toolSearch" type="search" placeholder="z.B. ChatGPT, Automatisierung, Copywriting, Notion …" autocomplete="off" />
+      <a class="btn primary" href="/kategorien/">Kategorien</a>
+    </div>
+
+    <div class="tool-meta" aria-label="Hinweise">
+      <span class="tool-chip">Tipp: Kurzname reicht (z.B. “n8n”)</span>
+      <span class="tool-chip">Wir bauen die Liste Schritt für Schritt aus</span>
+      <span class="tool-chip">Affiliate-Transparenz im Footer</span>
     </div>
   </section>
 
-  <section class="container" style="padding: 6px 0 40px;">
-    <div class="card" style="padding:16px;border-radius:14px;">
-      <p class="muted" style="margin:0;">
-        Coming soon: A–Z Liste, Filter und direkte Sprünge zu Vergleichen/Reviews.
-      </p>
+  <section style="padding: 6px 0 50px;">
+    <!-- Render-Mount -->
+    <div id="azMount" class="az-grid"></div>
+
+    <div id="noResults" class="no-results" style="display:none;">
+      Keine Treffer. Probier einen anderen Begriff oder starte über die <a href="/kategorien/"><strong>Kategorien</strong></a>.
     </div>
   </section>
 </main>
@@ -40,6 +135,7 @@
 <script src="/assets/js/theme.js" defer></script>
 <script src="/assets/js/components.js" defer></script>
 <script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/tools.js" defer></script>
 
 </body>
 </html>
