@@ -1,5 +1,6 @@
 // assets/js/components.js
 // Injects global header/footer HTML into placeholders on every page.
+// After injection, re-apply current theme so newly injected toggle buttons are initialized.
 
 (async function () {
   try {
@@ -17,6 +18,15 @@
       inject("/components/header.html", headerMount),
       inject("/components/footer.html", footerMount),
     ]);
+
+    // IMPORTANT: header/footer are injected after theme.js already ran.
+    // Re-apply current theme to update any newly added [data-theme-toggle] buttons.
+    try {
+      const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+      if (window.ToolIndexTheme && typeof window.ToolIndexTheme.applyTheme === "function") {
+        window.ToolIndexTheme.applyTheme(current);
+      }
+    } catch (e) {}
 
     document.dispatchEvent(new CustomEvent("components:loaded"));
   } catch (e) {
