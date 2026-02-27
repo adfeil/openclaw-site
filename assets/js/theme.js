@@ -1,48 +1,55 @@
 // assets/js/theme.js
+// Global theme (default LIGHT). Supports dynamic injected toggle button.
+
 (function () {
-  const STORAGE_KEY = "toolindex_theme"; // "light" | "dark"
+  const STORAGE_KEY = "toolindex_theme";
 
-  function applyTheme(theme) {
+  function setTheme(theme) {
+    if (theme === "dark") {
+      document.body.setAttribute("data-theme", "dark");
+    } else {
+      document.body.removeAttribute("data-theme"); // light default
+    }
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
+    updateToggle(theme);
+  }
+
+  function getStoredTheme() {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+  }
+
+  function detectDefaultTheme() {
+    // Default is light, unless user previously chose dark
+    return "light";
+  }
+
+  function updateToggle(theme) {
+    const btn = document.querySelector("[data-theme-toggle]");
+    if (!btn) return;
+
     const isDark = theme === "dark";
-    document.body.toggleAttribute("data-theme", isDark);
-    if (isDark) document.body.setAttribute("data-theme", "dark");
-    else document.body.removeAttribute("data-theme");
-
-    // Update any toggle buttons
-    const btns = document.querySelectorAll("[data-theme-toggle]");
-    btns.forEach((btn) => {
-      btn.setAttribute("aria-pressed", String(isDark));
-      btn.textContent = isDark ? "☀️" : "🌙";
-      btn.title = isDark ? "Light Mode" : "Dark Mode";
-    });
+    btn.setAttribute("aria-pressed", String(isDark));
+    btn.title = isDark ? "Light Mode" : "Dark Mode";
+    btn.textContent = isDark ? "☀️" : "🌙";
   }
 
-  function getPreferredTheme() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "light" || saved === "dark") return saved;
+  // init early
+  const stored = getStoredTheme();
+  const initial = stored || detectDefaultTheme();
+  setTheme(initial);
 
-    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
-    return prefersDark ? "dark" : "light";
-  }
+  // event delegation: works even if button is injected later
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest("[data-theme-toggle]");
+    if (!btn) return;
 
-  function toggleTheme() {
     const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
-    const next = current === "dark" ? "light" : "dark";
-    localStorage.setItem(STORAGE_KEY, next);
-    applyTheme(next);
-  }
-
-  // Apply as early as possible
-  document.addEventListener("DOMContentLoaded", () => {
-    applyTheme(getPreferredTheme());
-
-    document.addEventListener("click", (e) => {
-      const el = e.target.closest?.("[data-theme-toggle]");
-      if (!el) return;
-      toggleTheme();
-    });
+    setTheme(current === "dark" ? "light" : "dark");
   });
 
-  // Optional: expose for debugging
-  window.ToolIndexTheme = { toggleTheme, applyTheme };
+  // after components injected, update button state
+  document.addEventListener("components:loaded", function () {
+    const current = document.body.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    updateToggle(current);
+  });
 })();
