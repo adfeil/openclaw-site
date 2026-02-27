@@ -81,30 +81,39 @@ a:hover{ opacity:.9; }
 .muted{ color:var(--muted); }
 
 /* =====================================================
-   HEADER (FIXED – robust)
+   HEADER (STICKY)
+   IMPORTANT: Sticky breaks if any ancestor has overflow != visible.
 ===================================================== */
 
 .site-header{
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+
+  /* Fallback: works even if blur unsupported */
   background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
 
-/* Platz für den fixed Header */
-body{
-  padding-top: 76px; /* Desktop Header-Höhe */
+/* Only apply blur when supported */
+@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))){
+  .site-header{
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    /* slight translucency looks better with blur */
+    background: color-mix(in srgb, var(--panel) 92%, transparent);
+  }
 }
 
-/* Mobile Header ist höher (wegen Grid + Wrap) */
-@media (max-width: 768px){
-  body{
-    padding-top: 168px; /* Mobile Header-Höhe grob */
-  }
+.site-header .header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+  gap:18px;
 }
 
 .brand{
@@ -174,10 +183,8 @@ body[data-theme="dark"] .nav a.nav-pill{
 
 /* ================================
    Mobile Header Optimierung
-   (macht das Wrap "sauber" statt verzogen)
 ================================ */
 @media (max-width: 768px){
-
   .site-header .header-inner{
     flex-direction: column;
     align-items: flex-start;
