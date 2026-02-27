@@ -81,24 +81,33 @@ a:hover{ opacity:.9; }
 .muted{ color:var(--muted); }
 
 /* =====================================================
-   HEADER
+   HEADER (FIXED – robust)
 ===================================================== */
 
 .site-header{
-  position:sticky;
-  top:0;
-  z-index:10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+
   background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
 
-.site-header .header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 0;
-  gap:18px;
+/* Platz für den fixed Header */
+body{
+  padding-top: 76px; /* Desktop Header-Höhe */
+}
+
+/* Mobile Header ist höher (wegen Grid + Wrap) */
+@media (max-width: 768px){
+  body{
+    padding-top: 168px; /* Mobile Header-Höhe grob */
+  }
 }
 
 .brand{
@@ -438,4 +447,5 @@ th{
   top: 0;
   z-index: 1000;
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
