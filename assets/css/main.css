@@ -430,3 +430,12 @@ th{
 .theme-toggle:hover{
   background: var(--panel-soft);
 }
+
+/* === Sticky header hardening (keep it above content) === */
+.site-header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(12px);
+}
