@@ -1,0 +1,75 @@
+.page-kicker {
+  margin: 0 0 8px;
+}
+
+.trust-strip {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: -10px;
+  padding: 0 0 24px;
+}
+
+.trust-item {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  color: #1e3a8a;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.seo-intro p {
+  margin-bottom: 14px;
+}
+
+.quick-grid,
+.links-grid {
+  padding-top: 0;
+}
+
+.table-wrap {
+  margin-top: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap table {
+  min-width: 980px;
+}
+
+@media (min-width: 992px) {
+  .table-wrap thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #ffffff;
+    box-shadow: inset 0 -1px 0 #e5e7eb;
+  }
+}
+
+.mini-reviews {
+  display: grid;
+  gap: 16px;
+}
+
+.review-card {
+  padding: 18px;
+}
+
+.review-card h2 {
+  margin-top: 0;
+}
+
+.reco-box {
+  border: 1px solid #93c5fd;
+  background: #eff6ff;
+  padding: 18px;
+}
+
+@media (max-width: 900px) {
+  .trust-strip {
+    grid-template-columns: 1fr;
+  }
+}
