@@ -12,174 +12,177 @@
 </head>
 <body>
 
-<!-- COMPONENT:HEADER -->
+  <div data-component="header"></div>
 
-<section class="hero">
-  <div class="container">
-    <p class="muted" style="margin:0 0 8px;">Vergleich · Copywriting</p>
+  <section class="hero">
+    <div class="container">
+      <p class="muted" style="margin:0 0 8px;">Vergleich · Copywriting</p>
 
-    <h1>Die besten AI Copywriting Tools im Vergleich</h1>
+      <h1>Die besten AI Copywriting Tools im Vergleich</h1>
 
-    <p class="lead">
-      Wenn du schneller bessere Texte brauchst (Ads, Landingpages, E-Mails, SEO),
-      ist die Tool-Wahl entscheidend: Qualität, Brand-Voice, Workflows, Team-Fit und Preis/Leistung.
-      Hier bekommst du eine klare Empfehlung + Vergleichstabelle + Mini-Reviews.
+      <p class="lead">
+        Wenn du schneller bessere Texte brauchst (Ads, Landingpages, E-Mails, SEO),
+        ist die Tool-Wahl entscheidend: Qualität, Brand-Voice, Workflows, Team-Fit und Preis/Leistung.
+        Hier bekommst du eine klare Empfehlung + Vergleichstabelle + Mini-Reviews.
+      </p>
+
+      <div class="cta-row">
+        <a href="#quick-reco" class="btn primary">Jetzt Empfehlung sehen</a>
+        <a href="#vergleich" class="btn">Zur Tabelle</a>
+        <a href="#faq" class="btn">FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK_RECO:START -->
+  <section id="quick-reco" class="container" style="padding: 6px 0 24px;">
+    <h2 style="margin: 18px 0 10px;">Quick-Empfehlung</h2>
+    <p class="muted" style="margin:0 0 14px;">
+      Wenn du nur 1 Tool testen willst: starte hier. (Wird vom Bot anhand Score/Use-Case gefüllt.)
     </p>
 
-    <div class="cta-row">
-      <a href="#quick-reco" class="btn primary">Jetzt Empfehlung sehen</a>
-      <a href="#vergleich" class="btn">Zur Tabelle</a>
-      <a href="#faq" class="btn">FAQ</a>
+    <!-- Bot mount -->
+    <div data-reco-mount></div>
+
+    <p class="muted" style="margin:12px 0 0;">
+      Hinweis: „Bestes Tool“ hängt von Workflow, Budget und Ziel (SEO vs. Ads vs. Email) ab.
+    </p>
+  </section>
+  <!-- QUICK_RECO:END -->
+
+  <section class="container" style="padding: 6px 0 10px;">
+    <h2 style="margin: 18px 0 10px;">Warum überhaupt vergleichen?</h2>
+    <div class="grid" style="padding-top:0;">
+      <div class="card">
+        <h2>Qualität & Konsistenz</h2>
+        <p>Ein Tool kann “okay” schreiben – aber Brand-Voice über 50 Assets hinweg ist etwas anderes.</p>
+      </div>
+      <div class="card">
+        <h2>Workflows</h2>
+        <p>Briefing → Varianten → Editing → Freigabe → Export. Gute Tools sparen hier richtig Zeit.</p>
+      </div>
+      <div class="card">
+        <h2>Kostenfalle vermeiden</h2>
+        <p>Credits, Limits, Team-Seats, Zusatzfeatures. Wir schauen auf echte Nutzung – nicht nur Listenpreise.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- QUICK_RECO:START -->
-<section id="quick-reco" class="container" style="padding: 6px 0 24px;">
-  <h2 style="margin: 18px 0 10px;">Quick-Empfehlung</h2>
-  <p class="muted" style="margin:0 0 14px;">
-    Wenn du nur 1 Tool testen willst: starte hier. (Wird vom Bot anhand Score/Use-Case gefüllt.)
-  </p>
+  <section id="vergleich" class="container" style="padding: 6px 0 50px;">
+    <h2 style="margin: 18px 0 10px;">Vergleichstabelle</h2>
+    <p class="muted" style="margin:0 0 14px;">
+      Kriterien sind praxisnah. (Die Tabelle kann der Bot später aus Tools + Scores generieren.)
+    </p>
 
-  <!-- Bot mount -->
-  <div data-reco-mount></div>
+    <!-- TABLE:START -->
+    <table>
+      <thead>
+        <tr>
+          <th>Tool</th>
+          <th>Best for</th>
+          <th>Textqualität</th>
+          <th>Brand-Voice</th>
+          <th>Workflows</th>
+          <th>Preis/Leistung</th>
+          <th>CTA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Platzhalter</strong></td>
+          <td class="muted">—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><a class="btn primary" href="#mini-reviews">Details</a></td>
+        </tr>
+        <tr>
+          <td><strong>Platzhalter</strong></td>
+          <td class="muted">—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><a class="btn" href="#mini-reviews">Details</a></td>
+        </tr>
+        <tr>
+          <td><strong>Platzhalter</strong></td>
+          <td class="muted">—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><a class="btn" href="#mini-reviews">Details</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- TABLE:END -->
+  </section>
 
-  <p class="muted" style="margin:12px 0 0;">
-    Hinweis: „Bestes Tool“ hängt von Workflow, Budget und Ziel (SEO vs. Ads vs. Email) ab.
-  </p>
-</section>
-<!-- QUICK_RECO:END -->
+  <section id="mini-reviews" class="container" style="padding: 6px 0 24px;">
+    <h2 style="margin: 18px 0 10px;">Mini-Reviews</h2>
+    <p class="muted" style="margin:0 0 14px;">
+      Kurz, ehrlich, entscheidungsorientiert. (Wird vom Bot pro Tool ausgefüllt.)
+    </p>
 
-<section class="container" style="padding: 6px 0 10px;">
-  <h2 style="margin: 18px 0 10px;">Warum überhaupt vergleichen?</h2>
-  <div class="grid" style="padding-top:0;">
-    <div class="card">
-      <h2>Qualität & Konsistenz</h2>
-      <p>Ein Tool kann “okay” schreiben – aber Brand-Voice über 50 Assets hinweg ist etwas anderes.</p>
+    <div class="grid" style="padding-top:0;">
+      <div class="card">
+        <h2>Tool 1 – Platzhalter</h2>
+        <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
+        <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Fazit:</strong> <span class="muted">—</span></p>
+        <div style="margin-top:12px;"><a class="btn primary" href="#">Affiliate-CTA</a></div>
+      </div>
+
+      <div class="card">
+        <h2>Tool 2 – Platzhalter</h2>
+        <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
+        <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Fazit:</strong> <span class="muted">—</span></p>
+        <div style="margin-top:12px;"><a class="btn" href="#">Affiliate-CTA</a></div>
+      </div>
+
+      <div class="card">
+        <h2>Tool 3 – Platzhalter</h2>
+        <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
+        <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
+        <p><strong>Fazit:</strong> <span class="muted">—</span></p>
+        <div style="margin-top:12px;"><a class="btn" href="#">Affiliate-CTA</a></div>
+      </div>
     </div>
-    <div class="card">
-      <h2>Workflows</h2>
-      <p>Briefing → Varianten → Editing → Freigabe → Export. Gute Tools sparen hier richtig Zeit.</p>
+  </section>
+
+  <section id="faq" class="container" style="padding: 6px 0 50px;">
+    <h2 style="margin: 18px 0 10px;">FAQ</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Welches Tool ist am besten für Ads?</summary>
+        <p>Kommt darauf an, ob du schnelle Varianten oder maximale Brand-Voice-Kontrolle brauchst. Genau dafür ist die Quick-Empfehlung da.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Kann ich damit SEO-Texte ersetzen?</summary>
+        <p>AI hilft stark beim Drafting, Struktur, Varianten und Briefings. Für Top-SEO brauchst du trotzdem Redaktion + Faktencheck + interne Expertise.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Worauf sollte ich beim Preis achten?</summary>
+        <p>Limits (Credits/Token), Team-Seats, Export/Integrationen und ob wichtige Features im teuersten Plan “versteckt” sind.</p>
+      </details>
     </div>
-    <div class="card">
-      <h2>Kostenfalle vermeiden</h2>
-      <p>Credits, Limits, Team-Seats, Zusatzfeatures. Wir schauen auf echte Nutzung – nicht nur Listenpreise.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="vergleich" class="container" style="padding: 6px 0 50px;">
-  <h2 style="margin: 18px 0 10px;">Vergleichstabelle</h2>
-  <p class="muted" style="margin:0 0 14px;">
-    Kriterien sind praxisnah. (Die Tabelle kann der Bot später aus Tools + Scores generieren.)
-  </p>
+  <div data-component="footer"></div>
 
-  <!-- TABLE:START -->
-  <table>
-    <thead>
-      <tr>
-        <th>Tool</th>
-        <th>Best for</th>
-        <th>Textqualität</th>
-        <th>Brand-Voice</th>
-        <th>Workflows</th>
-        <th>Preis/Leistung</th>
-        <th>CTA</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Platzhalter</strong></td>
-        <td class="muted">—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td><a class="btn primary" href="#mini-reviews">Details</a></td>
-      </tr>
-      <tr>
-        <td><strong>Platzhalter</strong></td>
-        <td class="muted">—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td><a class="btn" href="#mini-reviews">Details</a></td>
-      </tr>
-      <tr>
-        <td><strong>Platzhalter</strong></td>
-        <td class="muted">—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td>—</td>
-        <td><a class="btn" href="#mini-reviews">Details</a></td>
-      </tr>
-    </tbody>
-  </table>
-  <!-- TABLE:END -->
-</section>
-
-<section id="mini-reviews" class="container" style="padding: 6px 0 24px;">
-  <h2 style="margin: 18px 0 10px;">Mini-Reviews</h2>
-  <p class="muted" style="margin:0 0 14px;">
-    Kurz, ehrlich, entscheidungsorientiert. (Wird vom Bot pro Tool ausgefüllt.)
-  </p>
-
-  <div class="grid" style="padding-top:0;">
-    <div class="card">
-      <h2>Tool 1 – Platzhalter</h2>
-      <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
-      <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Fazit:</strong> <span class="muted">—</span></p>
-      <div style="margin-top:12px;"><a class="btn primary" href="#">Affiliate-CTA</a></div>
-    </div>
-
-    <div class="card">
-      <h2>Tool 2 – Platzhalter</h2>
-      <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
-      <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Fazit:</strong> <span class="muted">—</span></p>
-      <div style="margin-top:12px;"><a class="btn" href="#">Affiliate-CTA</a></div>
-    </div>
-
-    <div class="card">
-      <h2>Tool 3 – Platzhalter</h2>
-      <p><strong>Ideal für:</strong> <span class="muted">—</span></p>
-      <p><strong>Vorteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Nachteile:</strong> <span class="muted">—</span></p>
-      <p><strong>Fazit:</strong> <span class="muted">—</span></p>
-      <div style="margin-top:12px;"><a class="btn" href="#">Affiliate-CTA</a></div>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="container" style="padding: 6px 0 50px;">
-  <h2 style="margin: 18px 0 10px;">FAQ</h2>
-
-  <div class="faq-list">
-    <details class="faq-item">
-      <summary>Welches Tool ist am besten für Ads?</summary>
-      <p>Kommt darauf an, ob du schnelle Varianten oder maximale Brand-Voice-Kontrolle brauchst. Genau dafür ist die Quick-Empfehlung da.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>Kann ich damit SEO-Texte ersetzen?</summary>
-      <p>AI hilft stark beim Drafting, Struktur, Varianten und Briefings. Für Top-SEO brauchst du trotzdem Redaktion + Faktencheck + interne Expertise.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary>Worauf sollte ich beim Preis achten?</summary>
-      <p>Limits (Credits/Token), Team-Seats, Export/Integrationen und ob wichtige Features im teuersten Plan “versteckt” sind.</p>
-    </details>
-  </div>
-</section>
-
-<!-- COMPONENT:FOOTER -->
-
-<script src="/assets/js/theme.js" defer></script>
+  <!-- Global scripts -->
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/components.js" defer></script>
+  <script src="/assets/js/nav.js" defer></script>
 
 </body>
 </html>
