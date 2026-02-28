@@ -1,10 +1,16 @@
 /* =====================================================
-   TOOLINDEX DESIGN SYSTEM v2
+   TOOLINDEX DESIGN SYSTEM v2.1 (POLISHED)
    Default: LIGHT MODE
    Dark Mode: body[data-theme="dark"]
 ===================================================== */
 
+/* =============================
+   TOKENS
+============================= */
 :root{
+  /* Layout */
+  --header-h: 72px;
+
   /* === COLOR SYSTEM (LIGHT DEFAULT) === */
   --bg: #f7f8fc;
   --bg-gradient-1: rgba(208,23,117,.08);
@@ -17,19 +23,34 @@
   --muted: #6b7280;
 
   --border: #e5e7eb;
+  --border-strong: rgba(17,24,39,.10);
 
   --accent: #2563eb;          /* primary blue */
   --accent-soft: rgba(37,99,235,.12);
+  --accent-strong: rgba(37,99,235,.22);
 
+  /* Radius */
+  --radius-xl: 22px;
   --radius-lg: 18px;
   --radius-md: 14px;
+  --radius-sm: 12px;
 
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md: 0 8px 24px rgba(0,0,0,.06);
+  /* Shadows (premium, subtle) */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-sm: 0 6px 18px rgba(17,24,39,.08);
+  --shadow-md: 0 12px 34px rgba(17,24,39,.10);
+
+  /* Typography */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 15px;
+  --text-lg: 16px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.8,.2,1);
 }
 
 /* ================= DARK MODE ================= */
-
 body[data-theme="dark"]{
   --bg: #0b0b10;
   --bg-gradient-1: rgba(208,23,117,.22);
@@ -42,27 +63,27 @@ body[data-theme="dark"]{
   --muted: rgba(255,255,255,.62);
 
   --border: rgba(255,255,255,.12);
+  --border-strong: rgba(255,255,255,.16);
 
   --accent: #3b82f6;
   --accent-soft: rgba(59,130,246,.18);
+  --accent-strong: rgba(59,130,246,.28);
 
-  --shadow-sm: none;
-  --shadow-md: none;
+  /* Keep subtle depth even in dark */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,.30);
+  --shadow-sm: 0 10px 24px rgba(0,0,0,.35);
+  --shadow-md: 0 18px 44px rgba(0,0,0,.45);
 }
 
 /* =====================================================
    GLOBAL RESET
 ===================================================== */
-
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--header-h, 72px);
-}
 
-#top10, #faq {
-  scroll-margin-top: var(--header-h, 72px);
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top: var(--header-h, 72px);
 }
 
 body{
@@ -75,12 +96,17 @@ body{
   color:var(--text);
   line-height:1.6;
 
+  /* Fixed header offset */
   padding-top: var(--header-h, 72px);
+}
 
+/* Anchors on pages (avoid only whitelisting two ids) */
+[id]{
+  scroll-margin-top: var(--header-h, 72px);
 }
 
 a{ color:inherit; text-decoration:none; }
-a:hover{ opacity:.9; }
+a:hover{ opacity:.92; }
 
 .container{
   width:min(1150px, calc(100% - 40px));
@@ -89,12 +115,17 @@ a:hover{ opacity:.9; }
 
 .muted{ color:var(--muted); }
 
+/* Small helpers */
+.page-kicker{
+  font-size: var(--text-sm);
+  letter-spacing: .2px;
+}
+
 /* =====================================================
-   HEADER (STICKY)
-   IMPORTANT: Sticky breaks if any ancestor has overflow != visible.
+   HEADER
 ===================================================== */
 
-/* Wrapper für injected components darf Sticky nicht begrenzen */
+/* Wrapper for injected components must not constrain layout */
 [data-component="header"],
 [data-component="footer"]{
   display: contents;
@@ -102,13 +133,14 @@ a:hover{ opacity:.9; }
 
 .site-header{
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
+  top: 0; left: 0; right: 0;
   z-index: 1000;
+
   background: var(--panel);
   border-bottom: 1px solid var(--border);
+
+  /* Premium subtle separation */
+  box-shadow: var(--shadow-xs);
 }
 
 /* Blur only if supported */
@@ -128,19 +160,11 @@ a:hover{ opacity:.9; }
   gap:18px;
 }
 
-.site-header .header-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 0;
-  gap:18px;
-}
-
 .brand{
   display:flex;
   align-items:center;
   gap:10px;
-  font-weight:700;
+  font-weight:800;
   letter-spacing:.2px;
 }
 
@@ -161,12 +185,13 @@ a:hover{ opacity:.9; }
   border-radius:10px;
   color: var(--muted);
   border:1px solid transparent;
-  font-weight:500;
+  font-weight:600;
+  transition: background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease), transform .18s var(--ease);
 }
 
 .nav a.active{
   color: var(--accent);
-  border-color: var(--accent);
+  border-color: var(--accent-strong);
   background: var(--accent-soft);
 }
 
@@ -176,12 +201,12 @@ a:hover{ opacity:.9; }
   opacity: 1;
 }
 
-/* Kategorien als "Button/Pill" */
+/* Kategorien intentionally as pill */
 .nav a.nav-pill{
   color: var(--accent);
   border-color: rgba(37,99,235,.28);
   background: linear-gradient(180deg, rgba(37,99,235,.16), rgba(37,99,235,.06));
-  font-weight: 700;
+  font-weight: 800;
 }
 
 body[data-theme="dark"] .nav a.nav-pill{
@@ -201,17 +226,16 @@ body[data-theme="dark"] .nav a.nav-pill{
   }
 }
 
-/* ================================
-   Mobile Header Optimierung
-================================ */
+/* Mobile header */
 @media (max-width: 768px){
+  :root{ --header-h: 108px; } /* more room when stacked */
+
   .site-header .header-inner{
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
 
-  /* Navigation als bewusstes Grid */
   .nav{
     width: 100%;
     display: grid;
@@ -226,7 +250,6 @@ body[data-theme="dark"] .nav a.nav-pill{
     border-radius: 12px;
   }
 
-  /* Toggle rechts unten, nicht "irgendwo" */
   .theme-toggle{
     align-self: flex-end;
     margin-top: 2px;
@@ -236,7 +259,6 @@ body[data-theme="dark"] .nav a.nav-pill{
 /* =====================================================
    HERO
 ===================================================== */
-
 .hero{
   padding:60px 0 30px;
 }
@@ -245,15 +267,15 @@ body[data-theme="dark"] .nav a.nav-pill{
   margin:0 0 14px;
   font-size: clamp(30px, 4vw, 46px);
   line-height:1.15;
-  font-weight:800;
-  letter-spacing:-0.5px;
+  font-weight:900;
+  letter-spacing:-0.6px;
 }
 
 .lead{
   margin:0;
   font-size: clamp(16px, 2vw, 18px);
   color: var(--muted);
-  max-width: 65ch;
+  max-width: 68ch;
 }
 
 .cta-row{
@@ -266,7 +288,6 @@ body[data-theme="dark"] .nav a.nav-pill{
 /* =====================================================
    BUTTONS
 ===================================================== */
-
 .btn{
   display:inline-flex;
   align-items:center;
@@ -275,58 +296,146 @@ body[data-theme="dark"] .nav a.nav-pill{
   border-radius:var(--radius-md);
   border:1px solid var(--border);
   background: var(--panel);
-  font-weight:600;
-  transition: all .18s ease;
+  font-weight:700;
+  transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease);
+  box-shadow: none;
 }
 
 .btn:hover{
   transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
 }
 
 .btn.primary{
-  border-color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 70%, transparent);
   background: var(--accent);
-  color:white;
+  color:#fff;
   box-shadow: var(--shadow-sm);
 }
 
 .btn.primary:hover{
   background:#1e4fd6;
+  box-shadow: var(--shadow-md);
 }
 
 /* =====================================================
-   GRID SYSTEM
+   SECTIONS / TYPO
 ===================================================== */
+main section.container{
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
 
+h2{
+  margin: 0 0 10px;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+h3{
+  margin: 0 0 8px;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.1px;
+}
+
+/* =====================================================
+   TRUST STRIP (used on comparisons)
+===================================================== */
+.trust-strip{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.trust-item{
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  text-align:center;
+  box-shadow: var(--shadow-xs);
+  font-weight: 700;
+}
+
+@media (max-width: 700px){
+  .trust-strip{ grid-template-columns: 1fr; }
+  .trust-item{ text-align:left; }
+}
+
+/* =====================================================
+   GRID + CARD SYSTEM (Premium)
+===================================================== */
 .grid{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
   gap:20px;
-  padding: 20px 0 60px;
+  padding: 16px 0 48px;
 }
 
+/* Base card */
 .card{
   grid-column: span 4;
   padding:20px;
-  border-radius:var(--radius-lg);
+  border-radius:var(--radius-xl);
   border:1px solid var(--border);
-  background: var(--panel);
-  box-shadow: var(--shadow-md);
-  transition: transform .2s ease, box-shadow .2s ease;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--panel) 94%, transparent),
+      var(--panel)
+    );
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle top highlight */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(600px 140px at 20% 0%, rgba(37,99,235,.10), transparent 60%);
+  opacity: .55;
+  pointer-events:none;
+}
+
+body[data-theme="dark"] .card::before{
+  opacity: .35;
 }
 
 .card:hover{
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-strong);
 }
 
-.card h2{
-  margin:0 0 8px;
-  font-size:17px;
+.card > *{ position: relative; } /* keep highlight behind content */
+
+/* Titles inside cards (support both h2/h3 usage) */
+.card h2,
+.card h3{
+  margin:0 0 10px;
+  font-weight: 900;
+  letter-spacing: -0.25px;
 }
+
+.card h2{ font-size: 18px; }
+.card h3{ font-size: 16px; }
 
 .card p{
-  margin:0;
+  margin:0 0 12px;
   color: var(--muted);
+  font-size: var(--text-lg);
+}
+
+.card p:last-child{ margin-bottom: 0; }
+
+/* Quick grid specifics (optional – harmless if unused) */
+.quick-grid .card .btn{
+  margin-top: 10px;
 }
 
 /* Responsive */
@@ -338,38 +447,79 @@ body[data-theme="dark"] .nav a.nav-pill{
 }
 
 /* =====================================================
-   TABLE STYLING
+   TABLE STYLING (Premium)
 ===================================================== */
 
+/* Wrap region becomes a "table card" */
+.table-wrap{
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--panel);
+  box-shadow: var(--shadow-sm);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Keep table spacing consistent */
 table{
   width:100%;
-  border-collapse: collapse;
-  margin-top:20px;
-  font-size:15px;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  font-size: 15px;
+  min-width: 860px; /* helps avoid cramped columns on small screens */
 }
 
 thead{
-  background: var(--panel-soft);
+  background: color-mix(in srgb, var(--panel-soft) 72%, var(--panel));
 }
 
 th, td{
-  padding:12px 14px;
+  padding:14px 16px;
   border-bottom:1px solid var(--border);
   text-align:left;
+  vertical-align: top;
+}
+
+/* Rounded corners for header */
+thead th:first-child{ border-top-left-radius: var(--radius-xl); }
+thead th:last-child{ border-top-right-radius: var(--radius-xl); }
+
+th{
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .2px;
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+  text-transform: none;
+  white-space: nowrap;
+}
+
+/* Zebra + hover */
+tbody tr:nth-child(even){
+  background: color-mix(in srgb, var(--panel-soft) 55%, transparent);
 }
 
 tbody tr:hover{
-  background: var(--panel-soft);
+  background: color-mix(in srgb, var(--accent-soft) 42%, transparent);
 }
 
-th{
-  font-weight:700;
+/* Strong first column (tool name) */
+tbody td:first-child{
+  font-weight: 900;
+  white-space: nowrap;
 }
+
+/* CTA cell: keep button readable */
+td .btn{
+  white-space: nowrap;
+}
+
+/* If table-wrap exists, remove table top margin from old styles */
+.table-wrap + *{ margin-top: 20px; }
 
 /* =====================================================
-   FAQ
+   FAQ (details/summary accordion)
 ===================================================== */
-
 .faq-list{
   display: grid;
   gap: 12px;
@@ -378,33 +528,36 @@ th{
 
 .faq-item{
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   background: var(--panel);
   overflow: hidden;
+  box-shadow: var(--shadow-xs);
 }
 
 .faq-item > summary{
   list-style: none;
   cursor: pointer;
   padding: 14px 16px;
-  font-weight: 700;
+  font-weight: 900;
   display: flex;
   justify-content: space-between;
   align-items:center;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--panel) 92%, transparent),
+      var(--panel)
+    );
 }
 
-.faq-item > summary::-webkit-details-marker{
-  display: none;
-}
+.faq-item > summary::-webkit-details-marker{ display: none; }
 
 .faq-item > summary::after{
   content: "▾";
-  transition: transform .18s ease;
+  transition: transform .18s var(--ease);
+  color: var(--muted);
 }
 
-.faq-item[open] > summary::after{
-  transform: rotate(180deg);
-}
+.faq-item[open] > summary::after{ transform: rotate(180deg); }
 
 .faq-item > p{
   margin: 0;
@@ -415,19 +568,15 @@ th{
 /* =====================================================
    FOOTER
 ===================================================== */
-
 .site-footer{
   border-top:1px solid var(--border);
   padding:30px 0 40px;
-  background: var(--panel-soft);
+  background: color-mix(in srgb, var(--panel-soft) 74%, var(--panel));
   margin-top:40px;
 }
 
-.site-footer ul{
-  padding-left:18px;
-}
+.site-footer ul{ padding-left:18px; }
 
-/* Footer layout helpers (used by components/footer.html) */
 .footer-inner{
   display:flex;
   flex-wrap:wrap;
@@ -445,10 +594,10 @@ th{
 .footer-disclaimer{
   padding-top: 10px;
   font-size: 14px;
+  color: var(--muted);
 }
 
 /* ===== THEME TOGGLE BUTTON ===== */
-
 .theme-toggle{
   margin-left: 8px;
   padding: 8px 10px;
@@ -458,8 +607,11 @@ th{
   color: var(--text);
   cursor: pointer;
   font-size: 16px;
+  transition: background .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease);
 }
 
 .theme-toggle:hover{
   background: var(--panel-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
 }
