@@ -1,8 +1,9 @@
 // assets/js/nav.js
 // Active nav highlighting + safe handling of hash-links on subpages.
-// Runs once immediately and again after components (header/footer) were injected.
+// Also sets dynamic --header-h CSS variable for fixed header spacing.
 
 (function () {
+
   function run() {
     try {
       var path = (location.pathname || "/").toLowerCase();
@@ -31,11 +32,38 @@
         var faq = document.querySelector('.nav a[data-nav="faq"]');
         if (faq) faq.setAttribute("href", "/#faq");
       }
+
     } catch (e) {
-      // no-op
+      // silent fail
     }
   }
 
+  // --- header height -> CSS var (for fixed header spacing) ---
+  function setHeaderHeight() {
+    var header = document.querySelector(".site-header");
+    if (!header) return;
+
+    var height = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--header-h", height + "px");
+  }
+
+  // Run immediately
   run();
-  document.addEventListener("components:loaded", run);
+
+  // Run again after header/footer injected
+  document.addEventListener("components:loaded", function () {
+    run();
+    setHeaderHeight();
+  });
+
+  // Initial header height setup
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setHeaderHeight, { once: true });
+  } else {
+    setHeaderHeight();
+  }
+
+  // Update on resize
+  window.addEventListener("resize", setHeaderHeight, { passive: true });
+
 })();
