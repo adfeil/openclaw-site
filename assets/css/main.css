@@ -92,6 +92,12 @@ a:hover{ opacity:.9; }
    IMPORTANT: Sticky breaks if any ancestor has overflow != visible.
 ===================================================== */
 
+/* Wrapper für injected components darf Sticky nicht begrenzen */
+[data-component="header"],
+[data-component="footer"]{
+  display: contents;
+}
+
 .site-header{
   position: -webkit-sticky;
   position: sticky;
