@@ -565,3 +565,64 @@ body[data-theme="dark"] .nav a.nav-pill{
   padding:6px 12px;
   font-size:13px;
 }
+
+/* =====================================================
+   QUICK TOP 3 (Comparison pages)
+===================================================== */
+.quick-top3{ padding-top: 0; }
+
+.quick-card{ grid-column: span 4; }
+@media (max-width: 900px){ .quick-card{ grid-column: span 6; } }
+@media (max-width: 600px){ .quick-card{ grid-column: span 12; } }
+
+.quick-head{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.quick-rank{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel-soft);
+  font-weight: 800;
+}
+
+.quick-title h3{ margin:0 0 4px; font-size: 16px; }
+.quick-title p{ margin:0; }
+
+.quick-score{
+  margin-left:auto;
+  display:inline-flex;
+  align-items:baseline;
+  gap:4px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  font-weight: 800;
+}
+.quick-score .score-max{ color: var(--muted); font-weight: 700; }
+
+.quick-cta{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+
+/* Slightly emphasize #1 */
+.quick-card.is-1{
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+}
+.quick-card.is-1 .quick-rank{
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 65%, var(--panel-soft));
+}
