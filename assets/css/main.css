@@ -338,73 +338,90 @@ body[data-theme="dark"] .nav a.nav-pill{
 }
 
 /* =====================================================
-   TABLE STYLING (CARD-LOOK, NO HORIZONTAL SCROLL DEFAULT)
+   TABLE STYLING v3 (no ugly mid-word breaks)
+   - Desktop: no scroll if enough space
+   - Smaller widths: allow horizontal scroll instead of destroying words/buttons
 ===================================================== */
 
 .table-wrap{
   margin-top: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--panel);
   box-shadow: var(--shadow-md);
-  overflow: hidden; /* wichtig für saubere Rundung */
 }
 
-/* Tabelle selbst */
+/* On wide screens we try to fit without forcing scroll */
 .table-wrap table{
   width: 100%;
-  border-collapse: separate;   /* wichtig für Radius an Ecken */
+  border-collapse: separate;
   border-spacing: 0;
-  margin: 0;
-  font-size: 15px;
 }
 
-/* Head */
+/* If viewport gets tight, allow scroll instead of breaking words into nonsense */
+@media (max-width: 1100px){
+  .table-wrap table{
+    min-width: 980px;
+  }
+}
+
 .table-wrap thead th{
   background: var(--panel-soft);
   font-weight: 800;
-  border-bottom: 1px solid var(--border);
+
+  /* IMPORTANT: prevent "Kostenlo-ser" style breaks */
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+
+  /* wrap only at spaces */
+  white-space: normal;
+  line-height: 1.25;
 }
 
-/* Zellen */
 .table-wrap th,
 .table-wrap td{
-  padding: 14px 16px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--border);
-  line-height: 1.45;
+}
 
-  /* verhindert “Text läuft drüber” */
-  overflow-wrap: anywhere;
+.table-wrap tbody tr:hover{
+  background: color-mix(in srgb, var(--panel-soft) 70%, transparent);
+}
+
+/* Body cells: allow wrapping, but not mid-word chaos */
+.table-wrap td{
   word-break: normal;
+  overflow-wrap: break-word;
   hyphens: auto;
+  line-height: 1.35;
 }
 
-/* Zebra */
-.table-wrap tbody tr:nth-child(even) td{
-  background: color-mix(in srgb, var(--panel-soft) 55%, transparent);
+/* First column (Tool + CTA): give it room so buttons don’t stack vertically */
+.table-wrap thead th:first-child,
+.table-wrap tbody td:first-child{
+  min-width: 180px;
 }
 
-/* Hover */
-.table-wrap tbody tr:hover td{
-  background: var(--panel-soft);
+/* Buttons inside table must NEVER wrap letter-by-letter */
+.table-wrap .btn{
+  white-space: nowrap;
 }
 
-/* Runde Ecken */
+/* Rounded corners (needs separate borders) */
 .table-wrap thead th:first-child{ border-top-left-radius: var(--radius-lg); }
 .table-wrap thead th:last-child{ border-top-right-radius: var(--radius-lg); }
-.table-wrap tbody tr:last-child td{ border-bottom: 0; }
 .table-wrap tbody tr:last-child td:first-child{ border-bottom-left-radius: var(--radius-lg); }
 .table-wrap tbody tr:last-child td:last-child{ border-bottom-right-radius: var(--radius-lg); }
 
-/* Tool-Spalte: Button etwas Luft */
-.table-wrap td:first-child .btn{
-  margin-top: 10px;
-}
-.table-wrap td:first-child strong{
-  display: inline-block;
-  margin-bottom: 6px;
+/* Remove double border look at bottom */
+.table-wrap tbody tr:last-child td{
+  border-bottom: 0;
 }
 
 /* =====================================================
