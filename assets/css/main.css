@@ -85,7 +85,6 @@ a:hover{ opacity:.9; }
 
 /* =====================================================
    HEADER (FIXED – robust)
-   NOTE: fixed is more reliable than sticky across injected layouts.
 ===================================================== */
 
 .site-header{
@@ -93,8 +92,8 @@ a:hover{ opacity:.9; }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
 
+  z-index: 1000;
   background: var(--panel);
   border-bottom: 1px solid var(--border);
 }
