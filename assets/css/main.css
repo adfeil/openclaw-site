@@ -521,3 +521,47 @@ body[data-theme="dark"] .nav a.nav-pill{
 .theme-toggle:hover{
   background: var(--panel-soft);
 }
+
+/* =====================================================
+   TOOL SCORE SYSTEM
+===================================================== */
+
+.tool-cell{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.tool-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.tool-name{
+  font-weight:700;
+}
+
+.tool-score{
+  display:inline-flex;
+  align-items:baseline;
+  gap:2px;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:700;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tool-score .score-max{
+  font-weight:500;
+  opacity:.6;
+  font-size:12px;
+}
+
+.btn-sm{
+  padding:6px 12px;
+  font-size:13px;
+}
