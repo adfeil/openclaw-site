@@ -8,32 +8,39 @@ REPO_APPROVAL_SOURCE="$REPO_DIR/governance/approvals/APR-DEPLOY-001.yml"
 
 TRIGGER_FILE="$WORKSPACE/triggers/deploy.request"
 
-# optionaler Telegram-Trigger (Approval + Trigger löschen)
+die() { echo "❌ $*" >&2; exit 1; }
+
+# optionaler Telegram-Trigger (nur Trigger löschen, Approval bleibt)
 if [ -f "$TRIGGER_FILE" ]; then
   echo "⚡ Deploy triggered via Telegram request file"
   rm -f "$TRIGGER_FILE"
 fi
 
+# Approval sicherstellen
 if [ ! -f "$APPROVAL_FILE" ]; then
-  # idiotensicher: approval aus repo nach workspace kopieren
   if [ -f "$REPO_APPROVAL_SOURCE" ]; then
     mkdir -p "$(dirname "$APPROVAL_FILE")"
     cp -f "$REPO_APPROVAL_SOURCE" "$APPROVAL_FILE"
     echo "✅ Approval copied from repo → $APPROVAL_FILE"
   else
-    echo "❌ BLOCKED: Missing approval APR-DEPLOY-001"
-    echo "   not found: $APPROVAL_FILE"
-    echo "   not found: $REPO_APPROVAL_SOURCE"
-    exit 1
+    die "BLOCKED: Missing approval APR-DEPLOY-001 (not found in workspace or repo)"
   fi
 fi
 
 echo "✅ Approval found → starting deploy"
 
-cd "$REPO_DIR"
+cd "$REPO_DIR" || die "Repo dir not found: $REPO_DIR"
+
+# 0) Safety: Repo muss sauber sein (außer wir erzeugen gleich data/ + manifest.json)
+# Wenn jetzt schon Änderungen drin sind → ABORT, damit wir nie aus Versehen anderes pushen.
+if [ -n "$(git status --porcelain)" ]; then
+  echo "❌ Repo has uncommitted changes BEFORE deploy. Aborting to avoid accidental push."
+  git status -sb || true
+  exit 1
+fi
 
 # -----------------------------
-# 1) Copy daily-scout files
+# 1) Copy daily-scout files (workspace → repo/data)
 # -----------------------------
 mkdir -p data
 
@@ -43,40 +50,72 @@ shopt -u nullglob
 
 if [ ${#FILES[@]} -gt 0 ]; then
   cp -f "${FILES[@]}" data/
-  echo "✅ Copied ${#FILES[@]} scout file(s)"
+  echo "✅ Copied ${#FILES[@]} scout file(s) into repo/data"
 else
-  echo "⚠️ No scout files found"
+  echo "⚠️ No scout files found (workspace/research). Continuing."
 fi
 
 # -----------------------------
-# 2) Build manifest.json
+# 2) Build manifest.json (repo root)
 # -----------------------------
 python3 <<'PY'
-import glob, json, os, datetime
+import glob, json, os, datetime, subprocess
 
-repo = os.path.expanduser("~/openclaw-site/data")
-files = sorted(glob.glob(os.path.join(repo, "daily-scout-*.md")), reverse=True)
+repo_data = os.path.expanduser("~/openclaw-site/data")
+files = sorted(glob.glob(os.path.join(repo_data, "daily-scout-*.md")), reverse=True)
+
+git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
 
 manifest = {
-  "files": [
-    {"name": os.path.basename(f), "path": "data/" + os.path.basename(f)}
-    for f in files
-  ],
+  "files": [{"name": os.path.basename(f), "path": "data/" + os.path.basename(f)} for f in files],
   "generated": datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z",
-  "git_commit": os.popen("git rev-parse HEAD").read().strip()
+  "git_commit": git_commit
 }
 
-with open(os.path.expanduser("~/openclaw-site/manifest.json"), "w") as f:
-  json.dump(manifest, f, indent=2)
+out = os.path.expanduser("~/openclaw-site/manifest.json")
+with open(out, "w", encoding="utf-8") as f:
+  json.dump(manifest, f, indent=2, ensure_ascii=False)
+  f.write("\n")
 PY
 
 echo "✅ manifest.json built"
 
 # -----------------------------
-# 3) Git push
+# 3) Guardrail: only allow changes in data/ and manifest.json
 # -----------------------------
-git add .
-git commit -m "bot: auto deploy $(date -u)" || echo "nothing to commit"
+CHANGED="$(git status --porcelain || true)"
+
+if [ -z "$CHANGED" ]; then
+  echo "ℹ️ Nothing changed. No commit/push."
+  exit 0
+fi
+
+BAD=0
+while IFS= read -r line; do
+  # porcelain format: "XY path"
+  path="${line:3}"
+  # allow: manifest.json or anything under data/
+  if [[ "$path" == "manifest.json" || "$path" == data/* ]]; then
+    continue
+  fi
+  echo "❌ OUT-OF-DEPLOY-SCOPE change detected: $line"
+  BAD=1
+done <<< "$CHANGED"
+
+if [ "$BAD" -eq 1 ]; then
+  echo
+  echo "ABORT: deploy.sh is only allowed to commit/push data/ + manifest.json."
+  echo "Fix those changes manually, then retry."
+  git status -sb || true
+  exit 1
+fi
+
+# -----------------------------
+# 4) Commit + push (scoped)
+# -----------------------------
+git add manifest.json data/ || die "git add failed"
+
+git commit -m "bot: auto deploy $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "ℹ️ nothing to commit"
 git push
 
 rm -f "$APPROVAL_FILE"
